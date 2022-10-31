@@ -3,12 +3,11 @@ package com.empiricus.statusviajante.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.Date;
 
 
 @Entity
 @Table(name = "usuario")
-public class Cadastro {
+public class CadastroUsuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,11 +27,15 @@ public class Cadastro {
 
     @NotNull
     @Size(min = 10, max = 11)
-    private int celular;
+    private String celular;
 
     @NotNull
     @Size(min = 3, max = 15)
     private String senha;
+
+    @NotNull
+    @Size(min = 3, max = 200)
+    private String nomeUsuario;
 
     public Long getIdUsuario() {
         return idUsuario;
@@ -66,11 +69,11 @@ public class Cadastro {
         this.email = email;
     }
 
-    public int getCelular() {
+    public String getCelular() {
         return celular;
     }
 
-    public void setCelular(int celular) {
+    public void setCelular(String celular) {
         this.celular = celular;
     }
 
@@ -80,5 +83,13 @@ public class Cadastro {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public String getNomeUsuario() {
+        return nomeUsuario;
+    }
+
+    public void setNomeUsuario(String nomeUsuario) {
+        this.nomeUsuario = nomeUsuario;
     }
 }
