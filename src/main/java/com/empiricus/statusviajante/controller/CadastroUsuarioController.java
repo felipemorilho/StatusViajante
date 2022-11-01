@@ -14,7 +14,6 @@ import java.util.List;
 @RequestMapping("/usuario")
 public class CadastroUsuarioController {
 
-
     @Autowired
     private CadastroUsuarioRepository repCadastro;
 
@@ -39,4 +38,4 @@ public class CadastroUsuarioController {
     public ResponseEntity<CadastroUsuario> post(@RequestBody CadastroUsuario cadastroUsuario){
         return ResponseEntity.status(HttpStatus.CREATED).body(repCadastro.save(cadastroUsuario));
     }
-    }
+}
