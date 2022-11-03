@@ -28,20 +28,14 @@ public class CadastroUsuarioController {
                 .map(resp -> ResponseEntity.ok(resp))
                 .orElse(ResponseEntity.notFound().build());
     }
-
     @GetMapping("/nome/{nome}")
     public ResponseEntity<List<CadastroUsuario>> GetByNome(@PathVariable String nome){
         return ResponseEntity.ok(repCadastro.findAllByNomeContainingIgnoreCase(nome));
     }
-
-
     @PostMapping
     public ResponseEntity<CadastroUsuario> post(@RequestBody CadastroUsuario cadastroUsuario){
         return ResponseEntity.status(HttpStatus.CREATED).body(repCadastro.save(cadastroUsuario));
     }
-
-}
-
     //Apaga Usuário por ID
     @DeleteMapping ("/{idUsuario}")
     public void Delete(@PathVariable Long idUsuario){
