@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/usuario")
+@RequestMapping("/usuarios")
 public class CadastroUsuarioController {
 
     @Autowired
@@ -34,8 +34,18 @@ public class CadastroUsuarioController {
         return ResponseEntity.ok(repCadastro.findAllByNomeContainingIgnoreCase(nome));
     }
 
+
     @PostMapping
     public ResponseEntity<CadastroUsuario> post(@RequestBody CadastroUsuario cadastroUsuario){
         return ResponseEntity.status(HttpStatus.CREATED).body(repCadastro.save(cadastroUsuario));
     }
+
 }
+
+    //Apaga Usuário por ID
+    @DeleteMapping ("/{idUsuario}")
+    public void Delete(@PathVariable Long idUsuario){
+        repCadastro.deleteById(idUsuario);
+    }
+    }
+
