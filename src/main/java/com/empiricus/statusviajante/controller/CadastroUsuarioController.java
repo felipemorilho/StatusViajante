@@ -14,7 +14,6 @@ import java.util.List;
 @RequestMapping("/usuarios")
 public class CadastroUsuarioController {
 
-
     @Autowired
     private CadastroUsuarioRepository repCadastro;
 
@@ -41,9 +40,12 @@ public class CadastroUsuarioController {
         return ResponseEntity.status(HttpStatus.CREATED).body(repCadastro.save(cadastroUsuario));
     }
 
+}
+
     //Apaga Usuário por ID
     @DeleteMapping ("/{idUsuario}")
     public void Delete(@PathVariable Long idUsuario){
         repCadastro.deleteById(idUsuario);
     }
     }
+

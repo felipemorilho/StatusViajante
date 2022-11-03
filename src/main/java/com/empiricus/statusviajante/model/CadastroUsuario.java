@@ -3,6 +3,8 @@ package com.empiricus.statusviajante.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
@@ -36,6 +38,9 @@ public class CadastroUsuario {
     @NotNull
     @Size(min = 3, max = 200)
     private String nomeUsuario;
+
+    @OneToMany(mappedBy = "cadastroUsuario")
+    private Set<GastoViagem> gastosViagem = new HashSet<>();
 
     public Long getIdUsuario() {
         return idUsuario;
