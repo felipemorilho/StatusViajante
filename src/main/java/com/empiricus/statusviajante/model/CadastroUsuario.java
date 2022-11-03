@@ -1,5 +1,7 @@
 package com.empiricus.statusviajante.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -33,9 +35,21 @@ public class CadastroUsuario {
     @Size(min = 3, max = 15)
     private String senha;
 
-    @NotNull
-    @Size(min = 3, max = 200)
-    private String nomeUsuario;
+//    @NotNull
+//    @Size(min = 3, max = 200)
+//    private String nomeUsuario;
+//
+//    @OneToMany
+//    @JsonIgnoreProperties("usuario")
+//    private ViagemModel viagem;
+
+//    public ViagemModel getViagem() {
+//        return viagem;
+//    }
+//
+//    public void setViagem(ViagemModel viagem) {
+//        this.viagem = viagem;
+//    }
 
     public Long getIdUsuario() {
         return idUsuario;
@@ -85,11 +99,4 @@ public class CadastroUsuario {
         this.senha = senha;
     }
 
-    public String getNomeUsuario() {
-        return nomeUsuario;
-    }
-
-    public void setNomeUsuario(String nomeUsuario) {
-        this.nomeUsuario = nomeUsuario;
-    }
 }
