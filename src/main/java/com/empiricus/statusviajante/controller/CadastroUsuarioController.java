@@ -19,24 +19,33 @@ public class CadastroUsuarioController {
     private CadastroUsuarioRepository repCadastro;
 
     @GetMapping
-    public ResponseEntity<List<CadastroUsuario>> GetAll(){
+    public ResponseEntity<List<CadastroUsuario>> GetAll() {
         return ResponseEntity.ok(repCadastro.findAll());
     }
 
     @GetMapping("/{idUsuario}")
-    public ResponseEntity<CadastroUsuario> GetById(@PathVariable Long idUsuario){
+    public ResponseEntity<CadastroUsuario> GetById(@PathVariable Long idUsuario) {
         return repCadastro.findById(idUsuario)
                 .map(resp -> ResponseEntity.ok(resp))
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @GetMapping("/nome/{nome}")
-    public ResponseEntity<List<CadastroUsuario>> GetByNome(@PathVariable String nome){
+    public ResponseEntity<List<CadastroUsuario>> GetByNome(@PathVariable String nome) {
         return ResponseEntity.ok(repCadastro.findAllByNomeContainingIgnoreCase(nome));
     }
 
     @PostMapping
-    public ResponseEntity<CadastroUsuario> post(@RequestBody CadastroUsuario cadastroUsuario){
+    public ResponseEntity<CadastroUsuario> post(@RequestBody CadastroUsuario cadastroUsuario) {
         return ResponseEntity.status(HttpStatus.CREATED).body(repCadastro.save(cadastroUsuario));
     }
+    @PutMapping
+    public ResponseEntity<CadastroUsuario> put(@RequestBody CadastroUsuario cadastroUsuario) {
+        return ResponseEntity.status(HttpStatus.OK).body(repCadastro.save(cadastroUsuario));
     }
+    @DeleteMapping("/(idUsuario}")
+    public void delete (@PathVariable Long idUsuario) {
+        repCadastro.deleteById(idUsuario);
+    }
+
+}
