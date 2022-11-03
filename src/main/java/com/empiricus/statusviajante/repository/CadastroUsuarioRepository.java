@@ -8,6 +8,4 @@ import java.util.List;
 public interface CadastroUsuarioRepository extends JpaRepository<CadastroUsuario, Long> {
 
     public List<CadastroUsuario> findAllByNomeContainingIgnoreCase (String nome);
-
-
 }
