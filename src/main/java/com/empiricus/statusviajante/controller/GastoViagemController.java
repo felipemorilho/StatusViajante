@@ -28,10 +28,21 @@ public class GastoViagemController {
                 .map(response -> ResponseEntity.ok(response))
                 .orElse(ResponseEntity.notFound().build());
     }
+    //TODO: arrumar esse get por idViagem depois que o idViagem for implementado no banco dentro da tabela gasto_viagem
+//    @GetMapping("findByViagem/{idViagem}")
+//    public ResponseEntity<GastoViagem> GetById(@PathVariable Long idGasto) {
+//        return repositoryGastoViagem.findById(idGasto)
+//                .map(response -> ResponseEntity.ok(response))
+//                .orElse(ResponseEntity.notFound().build());
+//    }
 
     @PostMapping
     public ResponseEntity<GastoViagem> post(@RequestBody GastoViagem gastoViagem) {
         return ResponseEntity.status(HttpStatus.CREATED).body(repositoryGastoViagem.save(gastoViagem));
 
+    }
+    @DeleteMapping("/{idGasto}")
+    public void Delete(@PathVariable Long idGasto) {
+        repositoryGastoViagem.deleteById(idGasto);
     }
 }

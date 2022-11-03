@@ -2,7 +2,6 @@ package com.empiricus.statusviajante.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.xml.crypto.Data;
 import java.util.Date;
 
 @Entity
@@ -11,27 +10,24 @@ public class GastoViagem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idGasto;
+    private Long idGasto;
 
     @NotNull
     private Date dataGasto;
-
     @NotNull
     private double valorGasto;
-
     private String moeda;
-
     private String descricaoGasto;
 
     @ManyToOne
     @JoinColumn(name = "id_usuario")
     private CadastroUsuario cadastroUsuario;
 
-    public int getIdGasto() {
+    public Long getIdGasto() {
         return idGasto;
     }
 
-    public void setIdGasto(int idGasto) {
+    public void setIdGasto(Long idGasto) {
         this.idGasto = idGasto;
     }
 
