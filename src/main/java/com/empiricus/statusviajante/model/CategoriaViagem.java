@@ -16,6 +16,10 @@ public class CategoriaViagem {
     @Size(min = 3, max = 50)
     private String nome;
 
+    @ManyToOne
+    @JoinColumn(name = "id_usuario")
+    private CategoriaViagem categoriaViagem;
+
     public Long getIdCategoria() {
         return idCategoria;
     }
