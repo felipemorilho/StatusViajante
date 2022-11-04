@@ -53,8 +53,8 @@ public class CadastroUsuario {
 //        this.viagem = viagem;
 //    }
 
-    @OneToMany(mappedBy = "cadastroUsuario")
-    private Set<GastoViagem> gastosViagem = new HashSet<>();
+    @OneToMany(mappedBy = "usuario")
+    private Set<ViagemModel> viagens = new HashSet<>();
 
     public Long getIdUsuario() {
         return idUsuario;
