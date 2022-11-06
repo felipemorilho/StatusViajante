@@ -104,4 +104,5 @@ public class CadastroUsuario {
         this.senha = senha;
     }
 
+
 }
