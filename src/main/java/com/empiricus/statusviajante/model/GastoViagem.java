@@ -20,8 +20,12 @@ public class GastoViagem {
     private String descricaoGasto;
 
     @ManyToOne
-    @JoinColumn(name = "id_usuario")
-    private CadastroUsuario cadastroUsuario;
+    @JoinColumn(name = "id_categoria")
+    private CategoriaViagem categoriaViagem;
+
+    @ManyToOne
+    @JoinColumn(name = "id_viagem")
+    private ViagemModel viagem;
 
     public Long getIdGasto() {
         return idGasto;
@@ -63,12 +67,19 @@ public class GastoViagem {
         this.descricaoGasto = descricaoGasto;
     }
 
-    public CadastroUsuario getCadastroUsuario() {
-        return cadastroUsuario;
+    public CategoriaViagem getCategoriaViagem() {
+        return categoriaViagem;
     }
 
-    public void setCadastroUsuario(CadastroUsuario cadastroUsuario) {
-        this.cadastroUsuario = cadastroUsuario;
+    public void setCategoriaViagem(CategoriaViagem categoriaViagem) {
+        this.categoriaViagem = categoriaViagem;
     }
 
+    public ViagemModel getViagem() {
+        return viagem;
+    }
+
+    public void setViagem(ViagemModel viagem) {
+        this.viagem = viagem;
+    }
 }
