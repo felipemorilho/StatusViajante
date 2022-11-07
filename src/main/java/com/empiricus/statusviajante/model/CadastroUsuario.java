@@ -14,28 +14,28 @@ public class CadastroUsuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idUsuario;
 
-    //@NotNull
-    //@Size(min = 3, max = 50)
+    @NotNull
+    @Size(min = 3, max = 50)
     private String nome;
 
-    //@NotNull
-    //@Size(min = 10, max = 10)
+    @NotNull
+    @Size(min = 10, max = 10)
     private String dataNascimento;
 
-    //@NotNull
-    //@Size(min = 3, max = 50)
+    @NotNull
+    @Size(min = 3, max = 50)
     private String email;
 
-    //@NotNull
-    //@Size(min = 9, max = 14)
+    @NotNull
+    @Size(min = 9, max = 14)
     private String celular;
 
-    //@NotNull
-    //@Size(min = 3, max = 100)
+    @NotNull
+    @Size(min = 3, max = 100)
     private String usuario;
 
-    //@NotNull
-    //@Size(min = 6, max = 100)
+    @NotNull
+    @Size(min = 6, max = 100)
     private String senha;
 
     public String getUsuario() {
