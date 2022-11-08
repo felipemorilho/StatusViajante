@@ -1,10 +1,7 @@
 package com.empiricus.statusviajante.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.util.Date;
@@ -14,7 +11,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "usuario")
-public class CadastroUsuario {
+public class CadastroUsuarioModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

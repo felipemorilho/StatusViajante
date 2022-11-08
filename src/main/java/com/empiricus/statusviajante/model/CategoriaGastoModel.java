@@ -8,7 +8,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "categoria")
-public class CategoriaViagem {
+public class CategoriaGastoModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,8 +18,8 @@ public class CategoriaViagem {
     @Size(min = 3, max = 50)
     private String nome;
 
-    @OneToMany(mappedBy = "categoriaViagem")
-    private Set<GastoViagem> gastosViagem = new HashSet<>();
+    @OneToMany(mappedBy = "categoriaGastoModel")
+    private Set<GastoViagemModel> gastosViagem = new HashSet<>();
 
     public Long getIdCategoria() {
         return idCategoria;

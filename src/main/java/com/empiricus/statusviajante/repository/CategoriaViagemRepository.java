@@ -1,11 +1,11 @@
 package com.empiricus.statusviajante.repository;
 
-import com.empiricus.statusviajante.model.CategoriaViagem;
+import com.empiricus.statusviajante.model.CategoriaGastoModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface CategoriaViagemRepository extends JpaRepository<CategoriaViagem, Long> {
+public interface CategoriaViagemRepository extends JpaRepository<CategoriaGastoModel, Long> {
 
-    public List<CategoriaViagem> findAllByNomeContainingIgnoreCase (String nome);
+    public List<CategoriaGastoModel> findAllByNomeContainingIgnoreCase (String nome);
 }
