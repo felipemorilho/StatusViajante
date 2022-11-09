@@ -3,10 +3,12 @@ package com.empiricus.statusviajante.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "categoria")
-public class CategoriaViagem {
+public class CategoriaGastoModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,9 +18,8 @@ public class CategoriaViagem {
     @Size(min = 3, max = 50)
     private String nome;
 
-    @ManyToOne
-    @JoinColumn(name = "id_usuario")
-    private CategoriaViagem categoriaViagem;
+    @OneToMany(mappedBy = "categoriaGastoModel")
+    private Set<GastoViagemModel> gastosViagem = new HashSet<>();
 
     public Long getIdCategoria() {
         return idCategoria;

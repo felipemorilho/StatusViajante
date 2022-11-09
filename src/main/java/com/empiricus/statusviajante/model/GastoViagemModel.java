@@ -6,7 +6,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "gasto_viagem")
-public class GastoViagem {
+public class GastoViagemModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,8 +20,12 @@ public class GastoViagem {
     private String descricaoGasto;
 
     @ManyToOne
-    @JoinColumn(name = "id_usuario")
-    private CadastroUsuario cadastroUsuario;
+    @JoinColumn(name = "id_categoria")
+    private CategoriaGastoModel categoriaGastoModel;
+
+    @ManyToOne
+    @JoinColumn(name = "id_viagem")
+    private ViagemModel viagem;
 
     public Long getIdGasto() {
         return idGasto;
@@ -63,12 +67,19 @@ public class GastoViagem {
         this.descricaoGasto = descricaoGasto;
     }
 
-    public CadastroUsuario getCadastroUsuario() {
-        return cadastroUsuario;
+    public CategoriaGastoModel getCategoriaViagem() {
+        return categoriaGastoModel;
     }
 
-    public void setCadastroUsuario(CadastroUsuario cadastroUsuario) {
-        this.cadastroUsuario = cadastroUsuario;
+    public void setCategoriaViagem(CategoriaGastoModel categoriaGastoModel) {
+        this.categoriaGastoModel = categoriaGastoModel;
     }
 
+    public ViagemModel getViagem() {
+        return viagem;
+    }
+
+    public void setViagem(ViagemModel viagem) {
+        this.viagem = viagem;
+    }
 }

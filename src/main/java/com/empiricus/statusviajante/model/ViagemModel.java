@@ -1,13 +1,13 @@
 package com.empiricus.statusviajante.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.*;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name="viagens")
@@ -45,6 +45,14 @@ public class ViagemModel{
     @Size(min=3, max=200)
     private String descricao_viagem;
 
+    @OneToMany(mappedBy = "viagem")
+    private Set<GastoViagemModel> gastosViagems = new HashSet<>();
+
+    @ManyToOne
+    @JoinColumn(name = "id_usuario")
+    private CadastroUsuarioModel usuario;
+
+
 //    @ManyToOne
 //    @JsonIgnoreProperties ("viagem")
 //    private CadastroUsuario usuario;
@@ -59,7 +67,6 @@ public class ViagemModel{
 //    @OneToMany
 //    @JsonIgnoreProperties ("viagem")
 //    private Gasto gasto;
-
 
     public Long getIdViagem() {
         return idViagem;
@@ -139,5 +146,13 @@ public class ViagemModel{
 
     public void setDescricao_viagem(String descricao_viagem) {
         this.descricao_viagem = descricao_viagem;
+    }
+
+    public CadastroUsuarioModel getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(CadastroUsuarioModel usuario) {
+        this.usuario = usuario;
     }
 }

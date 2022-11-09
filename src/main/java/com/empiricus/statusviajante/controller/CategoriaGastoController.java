@@ -1,7 +1,7 @@
 package com.empiricus.statusviajante.controller;
 
 
-import com.empiricus.statusviajante.model.CategoriaViagem;
+import com.empiricus.statusviajante.model.CategoriaGastoModel;
 import com.empiricus.statusviajante.repository.CategoriaViagemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,35 +13,35 @@ import java.util.List;
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/categoria")
-public class CategoriaViagemController {
+public class CategoriaGastoController {
 
     @Autowired
     private CategoriaViagemRepository repositoryCategoria;
 
     @GetMapping
-    public ResponseEntity<List<CategoriaViagem>> GetAll() {
+    public ResponseEntity<List<CategoriaGastoModel>> GetAll() {
         return ResponseEntity.ok(repositoryCategoria.findAll());
     }
 
     @GetMapping("/{idCategoria}")
-    public ResponseEntity<CategoriaViagem> GetById(@PathVariable Long idCategoria) {
+    public ResponseEntity<CategoriaGastoModel> GetById(@PathVariable Long idCategoria) {
         return repositoryCategoria.findById(idCategoria)
                 .map(resp -> ResponseEntity.ok(resp))
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @GetMapping("/nome/{nome}")
-    public ResponseEntity<List<CategoriaViagem>> GetByNome(@PathVariable String nome) {
+    public ResponseEntity<List<CategoriaGastoModel>> GetByNome(@PathVariable String nome) {
         return ResponseEntity.ok(repositoryCategoria.findAllByNomeContainingIgnoreCase(nome));
     }
 
     @PostMapping
-    public ResponseEntity<CategoriaViagem> post(@RequestBody CategoriaViagem categoriaViagem) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(repositoryCategoria.save(categoriaViagem));
+    public ResponseEntity<CategoriaGastoModel> post(@RequestBody CategoriaGastoModel categoriaGastoModel) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(repositoryCategoria.save(categoriaGastoModel));
     }
     @PutMapping
-    public ResponseEntity<CategoriaViagem> put(@RequestBody CategoriaViagem categoriaViagem) {
-        return ResponseEntity.ok(repositoryCategoria.save(categoriaViagem));
+    public ResponseEntity<CategoriaGastoModel> put(@RequestBody CategoriaGastoModel categoriaGastoModel) {
+        return ResponseEntity.ok(repositoryCategoria.save(categoriaGastoModel));
     }
     @DeleteMapping("/{idCategoria}")
     public void Delete(@PathVariable Long idCategoria) {
