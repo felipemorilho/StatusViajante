@@ -1,5 +1,6 @@
 package com.empiricus.statusviajante.controller;
 
+import com.empiricus.statusviajante.model.CategoriaGastoModel;
 import com.empiricus.statusviajante.model.GastoViagemModel;
 import com.empiricus.statusviajante.repository.GastoViagemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,10 @@ public class GastoViagemController {
     public ResponseEntity<GastoViagemModel> post(@RequestBody GastoViagemModel gastoViagemModel) {
         return ResponseEntity.status(HttpStatus.CREATED).body(repositoryGastoViagem.save(gastoViagemModel));
 
+    }
+    @PutMapping
+    public ResponseEntity<GastoViagemModel> put(@RequestBody GastoViagemModel gastoViagemModel) {
+        return ResponseEntity.ok(repositoryGastoViagem.save(gastoViagemModel));
     }
     @DeleteMapping("/{idGasto}")
     public void Delete(@PathVariable Long idGasto) {

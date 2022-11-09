@@ -1,5 +1,6 @@
 package com.empiricus.statusviajante.controller;
 
+import com.empiricus.statusviajante.model.GastoViagemModel;
 import com.empiricus.statusviajante.model.ViagemModel;
 import com.empiricus.statusviajante.repository.ViagemRepository;
 
@@ -37,8 +38,10 @@ public class ViagemController {
     public ResponseEntity<ViagemModel> Post(@RequestBody ViagemModel viagem){
         return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(viagem));
     }
-
-    //Apaga Viagem por ID
+    @PutMapping
+    public ResponseEntity<ViagemModel> put(@RequestBody ViagemModel viagem) {
+        return ResponseEntity.ok(repository.save(viagem));
+    }
     @DeleteMapping ("/{id}")
     public void Delete(@PathVariable Long id){
         repository.deleteById(id);

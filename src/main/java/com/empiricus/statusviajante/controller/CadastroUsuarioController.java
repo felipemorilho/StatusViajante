@@ -1,6 +1,7 @@
 package com.empiricus.statusviajante.controller;
 
 import com.empiricus.statusviajante.model.CadastroUsuarioModel;
+import com.empiricus.statusviajante.model.CategoriaGastoModel;
 import com.empiricus.statusviajante.repository.CadastroUsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -36,7 +37,10 @@ public class CadastroUsuarioController {
     public ResponseEntity<CadastroUsuarioModel> post(@RequestBody CadastroUsuarioModel cadastroUsuarioModel){
         return ResponseEntity.status(HttpStatus.CREATED).body(repCadastro.save(cadastroUsuarioModel));
     }
-    //Apaga Usuário por ID
+    @PutMapping
+    public ResponseEntity<CadastroUsuarioModel> put(@RequestBody CadastroUsuarioModel cadastroUsuarioModel) {
+        return ResponseEntity.ok(repCadastro.save(cadastroUsuarioModel));
+    }
     @DeleteMapping ("/{idUsuario}")
     public void Delete(@PathVariable Long idUsuario){
         repCadastro.deleteById(idUsuario);
