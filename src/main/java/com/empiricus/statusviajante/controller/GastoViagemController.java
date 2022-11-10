@@ -42,10 +42,10 @@ public class GastoViagemController {
         return ResponseEntity.status(HttpStatus.CREATED).body(repositoryGastoViagem.save(gastoViagemModel));
 
     }
-    @PutMapping
-    public ResponseEntity<GastoViagemModel> put(@RequestBody GastoViagemModel gastoViagemModel) {
-        return ResponseEntity.ok(repositoryGastoViagem.save(gastoViagemModel));
-    }
+    //@PutMapping
+    //public ResponseEntity<GastoViagemModel> put(@RequestBody GastoViagemModel gastoViagemModel) {
+        //return ResponseEntity.ok(repositoryGastoViagem.save(gastoViagemModel));
+    //}
     @DeleteMapping("/{idGasto}")
     public void Delete(@PathVariable Long idGasto) {
         repositoryGastoViagem.deleteById(idGasto);

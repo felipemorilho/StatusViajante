@@ -38,10 +38,10 @@ public class ViagemController {
     public ResponseEntity<ViagemModel> Post(@RequestBody ViagemModel viagem){
         return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(viagem));
     }
-    @PutMapping
-    public ResponseEntity<ViagemModel> put(@RequestBody ViagemModel viagem) {
-        return ResponseEntity.ok(repository.save(viagem));
-    }
+    //@PutMapping
+    //public ResponseEntity<ViagemModel> put(@RequestBody ViagemModel viagem) {
+       // return ResponseEntity.ok(repository.save(viagem));
+   // }
     @DeleteMapping ("/{id}")
     public void Delete(@PathVariable Long id){
         repository.deleteById(id);
