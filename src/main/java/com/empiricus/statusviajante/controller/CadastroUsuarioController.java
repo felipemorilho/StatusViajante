@@ -1,6 +1,6 @@
 package com.empiricus.statusviajante.controller;
 
-import com.empiricus.statusviajante.model.CadastroUsuario;
+import com.empiricus.statusviajante.model.CadastroUsuarioModel;
 import com.empiricus.statusviajante.repository.CadastroUsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,31 +15,38 @@ import java.util.List;
 public class CadastroUsuarioController {
 
     @Autowired
-    private CadastroUsuarioRepository repCadastro;
+    private CadastroUsuarioRepository cadastroUsuarioRepository;
 
     @GetMapping
-    public ResponseEntity<List<CadastroUsuario>> GetAll(){
-        return ResponseEntity.ok(repCadastro.findAll());
+    public ResponseEntity<List<CadastroUsuarioModel>> GetAll() {
+        return ResponseEntity.ok(cadastroUsuarioRepository.findAll());
     }
 
     @GetMapping("/{idUsuario}")
-    public ResponseEntity<CadastroUsuario> GetById(@PathVariable Long idUsuario){
-        return repCadastro.findById(idUsuario)
+    public ResponseEntity<CadastroUsuarioModel> GetById(@PathVariable Long idUsuario) {
+        return cadastroUsuarioRepository.findById(idUsuario)
                 .map(resp -> ResponseEntity.ok(resp))
                 .orElse(ResponseEntity.notFound().build());
     }
+
     @GetMapping("/nome/{nome}")
-    public ResponseEntity<List<CadastroUsuario>> GetByNome(@PathVariable String nome){
-        return ResponseEntity.ok(repCadastro.findAllByNomeContainingIgnoreCase(nome));
+    public ResponseEntity<List<CadastroUsuarioModel>> GetByNome(@PathVariable String nome) {
+        return ResponseEntity.ok(cadastroUsuarioRepository.findAllByNomeContainingIgnoreCase(nome));
     }
+
     @PostMapping
-    public ResponseEntity<CadastroUsuario> post(@RequestBody CadastroUsuario cadastroUsuario){
-        return ResponseEntity.status(HttpStatus.CREATED).body(repCadastro.save(cadastroUsuario));
+    public ResponseEntity<CadastroUsuarioModel> post(@RequestBody CadastroUsuarioModel cadastroUsuarioModel) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(cadastroUsuarioRepository.save(cadastroUsuarioModel));
     }
-    //Apaga Usuário por ID
-    @DeleteMapping ("/{idUsuario}")
-    public void Delete(@PathVariable Long idUsuario){
-        repCadastro.deleteById(idUsuario);
+
+    @PutMapping
+    public ResponseEntity<CadastroUsuarioModel> put(@RequestBody CadastroUsuarioModel cadastroUsuarioModel) {
+        return ResponseEntity.ok(cadastroUsuarioRepository.save(cadastroUsuarioModel));
     }
+
+    @DeleteMapping("/{idUsuario}")
+    public void Delete(@PathVariable Long idUsuario) {
+        cadastroUsuarioRepository.deleteById(idUsuario);
     }
+}
 

@@ -1,7 +1,5 @@
 package com.empiricus.statusviajante.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.*;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Min;
@@ -12,24 +10,24 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name="viagens")
-public class ViagemModel{
+@Table(name = "viagens")
+public class ViagemModel {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idViagem;
 
     @NotNull
-    @Size(min=3, max=100)
+    @Size(min = 3, max = 100)
     private String nome_viagem;
 
-    @Size(min=3, max=100)
+    @Size(min = 3, max = 100)
     private String origem;
 
-    @Size(min=3, max=100)
+    @Size(min = 3, max = 100)
     private String destino;
 
-    @Size(min=3, max=100)
+    @Size(min = 3, max = 100)
     private String moeda;
 
     @Temporal(TemporalType.DATE)
@@ -41,34 +39,18 @@ public class ViagemModel{
     @DecimalMin(value = "0.1")
     private Double orcamento;
 
-    @Min(value=1)
+    @Min(value = 1)
     private Integer qtd_pessoas;
 
-    @Size(min=3, max=200)
+    @Size(min = 3, max = 200)
     private String descricao_viagem;
 
     @OneToMany(mappedBy = "viagem")
-    private Set<GastoViagem> gastosViagems = new HashSet<>();
+    private Set<GastoViagemModel> gastosViagems = new HashSet<>();
 
     @ManyToOne
     @JoinColumn(name = "id_usuario")
-    private CadastroUsuario usuario;
-
-
-//    @ManyToOne
-//    @JsonIgnoreProperties ("viagem")
-//    private CadastroUsuario usuario;
-//
-//    public CadastroUsuario getUsuario() {
-//        return usuario;
-//    }
-//
-//    public void setUsuario(CadastroUsuario usuario) {
-//        this.usuario = usuario;
-//    }
-//    @OneToMany
-//    @JsonIgnoreProperties ("viagem")
-//    private Gasto gasto;
+    private CadastroUsuarioModel usuario;
 
     public Long getIdViagem() {
         return idViagem;
@@ -150,11 +132,11 @@ public class ViagemModel{
         this.descricao_viagem = descricao_viagem;
     }
 
-    public CadastroUsuario getUsuario() {
+    public CadastroUsuarioModel getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(CadastroUsuario usuario) {
+    public void setUsuario(CadastroUsuarioModel usuario) {
         this.usuario = usuario;
     }
 }

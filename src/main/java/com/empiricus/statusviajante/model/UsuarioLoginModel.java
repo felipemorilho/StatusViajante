@@ -1,6 +1,6 @@
 package com.empiricus.statusviajante.model;
 
-public class UserLogin {
+public class UsuarioLoginModel {
 
     private String nome;
     private String usuario;
