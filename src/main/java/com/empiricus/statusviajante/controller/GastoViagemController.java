@@ -28,13 +28,6 @@ public class GastoViagemController {
                 .map(response -> ResponseEntity.ok(response))
                 .orElse(ResponseEntity.notFound().build());
     }
-    //TODO: arrumar esse get por idViagem depois que o idViagem for implementado no banco dentro da tabela gasto_viagem
-//    @GetMapping("findByViagem/{idViagem}")
-//    public ResponseEntity<GastoViagem> GetById(@PathVariable Long idGasto) {
-//        return repositoryGastoViagem.findById(idGasto)
-//                .map(response -> ResponseEntity.ok(response))
-//                .orElse(ResponseEntity.notFound().build());
-//    }
 
     @PostMapping
     public ResponseEntity<GastoViagem> post(@RequestBody GastoViagem gastoViagem) {
@@ -44,5 +37,16 @@ public class GastoViagemController {
     @DeleteMapping("/{idGasto}")
     public void Delete(@PathVariable Long idGasto) {
         repositoryGastoViagem.deleteById(idGasto);
+    }
+
+    //NOVOS ENDPOINTS
+    @GetMapping("viagem/{idViagem}")
+    public ResponseEntity<List<GastoViagem>> GetAllGastosByIdViagem(@PathVariable Long idViagem) {
+        return ResponseEntity.ok(repositoryGastoViagem.findByViagem_idViagem(idViagem));
+
+    }
+    @PutMapping("/{idGasto}")
+    public ResponseEntity<GastoViagem> putGastoById( @RequestBody GastoViagem gastoViagem) {
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(repositoryGastoViagem.save(gastoViagem));
     }
 }
