@@ -10,8 +10,6 @@ import java.util.Optional;
 
 @Repository
 public interface ViagemRepository extends JpaRepository<ViagemModel, Long> {
-
     public Optional<ViagemModel> findById(Long idViagem);
-
     public List<ViagemModel> findByUsuario_idUsuario(Long idViagem);
 }
