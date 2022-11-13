@@ -2,6 +2,7 @@ package com.empiricus.statusviajante.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.util.Date;
@@ -22,8 +23,8 @@ public class CadastroUsuarioModel {
     @Pattern(regexp = "^((\\b[A-zÀ-ú']{2,40}\\b)\\s*){2,}$", flags = { Pattern.Flag.CASE_INSENSITIVE, Pattern.Flag.MULTILINE }, message = "O nome é inválido.")
     private String nome;
 
-    @NotBlank(message = "A data de nascimento deve ser preenchida.")
-    @Pattern(regexp = "(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/(19|20)\\d{2}", flags = {Pattern.Flag.MULTILINE }, message = "A data deve ser no formato dd/mm/aaaa.")
+   @NotNull(message = "A data de nascimento deve ser preenchida.")
+//    @Pattern(regexp = "(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/(19|20)\\d{2}", flags = {Pattern.Flag.MULTILINE }, message = "A data deve ser no formato dd/mm/aaaa.")
     private Date dataNascimento;
 
     @NotBlank(message = "O email deve ser preenchido.")
@@ -45,18 +46,6 @@ public class CadastroUsuarioModel {
     @Size(min = 5, max = 20, message = "O Nome de USuário deve ter entre 5 e 20 caracteres.")
     @Pattern(regexp = "^[a-zA-Z0-9]([._-](?![._-])|[a-zA-Z0-9]){3,18}[a-zA-Z0-9]$", message = "O Nome de Usuário não suportado.")
     private String nomeUsuario;
-//
-//    @OneToMany
-//    @JsonIgnoreProperties("usuario")
-//    private ViagemModel viagem;
-
-//    public ViagemModel getViagem() {
-//        return viagem;
-//    }
-//
-//    public void setViagem(ViagemModel viagem) {
-//        this.viagem = viagem;
-//    }
 
     @OneToMany(mappedBy = "usuario")
     private Set<ViagemModel> viagens = new HashSet<>();
@@ -109,5 +98,11 @@ public class CadastroUsuarioModel {
         this.senha = senha;
     }
 
+    public String getNomeUsuario() {
+        return nomeUsuario;
+    }
 
+    public void setNomeUsuario(String nomeUsuario) {
+        this.nomeUsuario = nomeUsuario;
+    }
 }

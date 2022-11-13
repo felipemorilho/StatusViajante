@@ -52,22 +52,6 @@ public class ViagemModel{
     @JoinColumn(name = "id_usuario")
     private CadastroUsuarioModel usuario;
 
-
-//    @ManyToOne
-//    @JsonIgnoreProperties ("viagem")
-//    private CadastroUsuario usuario;
-//
-//    public CadastroUsuario getUsuario() {
-//        return usuario;
-//    }
-//
-//    public void setUsuario(CadastroUsuario usuario) {
-//        this.usuario = usuario;
-//    }
-//    @OneToMany
-//    @JsonIgnoreProperties ("viagem")
-//    private Gasto gasto;
-
     public Long getIdViagem() {
         return idViagem;
     }
