@@ -33,7 +33,6 @@ public class GastoViagemController {
         return ResponseEntity.status(HttpStatus.CREATED).body(gastoViagemRepository.save(gastoViagemModel));
     }
 
-
     @PutMapping
     public ResponseEntity<GastoViagemModel> put(@RequestBody GastoViagemModel gastoViagemModel) {
         return ResponseEntity.ok(gastoViagemRepository.save(gastoViagemModel));
@@ -47,12 +46,8 @@ public class GastoViagemController {
     //NOVOS ENDPOINTS
     @GetMapping("viagem/{idViagem}")
     public ResponseEntity<List<GastoViagemModel>> GetAllGastosByIdViagem(@PathVariable Long idViagem) {
-        return ResponseEntity.ok(repositoryGastoViagem.findByViagem_idViagem(idViagem));
+        return ResponseEntity.ok(gastoViagemRepository.findByViagem_idViagem(idViagem));
 
     }
 
-    @PutMapping
-    public ResponseEntity<GastoViagemModel> putGastoById( @RequestBody GastoViagemModel gastoViagem) {
-        return ResponseEntity.status(HttpStatus.ACCEPTED).body(repositoryGastoViagem.save(gastoViagem));
-    }
 }

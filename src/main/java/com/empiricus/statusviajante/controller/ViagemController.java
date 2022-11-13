@@ -51,8 +51,6 @@ public class ViagemController {
     //Lista Viagens por Usuario ID
     @GetMapping("usuario/{idUsuario}")
     public ResponseEntity<List<ViagemModel>> GetAllViagenByIdUsuario(@PathVariable Long idUsuario) {
-        return ResponseEntity.ok(repository.findByUsuario_idUsuario(idUsuario));
-
+        return ResponseEntity.ok(viagemRepository.findByUsuario_idUsuario(idUsuario));
     }
-
 }
