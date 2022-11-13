@@ -10,24 +10,25 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name="viagens")
-public class ViagemModel{
+@Table(name = "viagens")
+public class ViagemModel {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idViagem;
 
     @NotNull
+
     @Size(min=3, max=100)
     private String nomeViagem;
 
-    @Size(min=3, max=100)
+    @Size(min = 3, max = 100)
     private String origem;
 
-    @Size(min=3, max=100)
+    @Size(min = 3, max = 100)
     private String destino;
 
-    @Size(min=3, max=100)
+    @Size(min = 3, max = 100)
     private String moeda;
 
     @Temporal(TemporalType.DATE)
