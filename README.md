@@ -25,7 +25,7 @@ Link da Colletion Status:Viajante : __________________
   <h2>FRONT-END</h2>
   <p>Ainda nao iniciado</p>
   
-  <h2BACK-END</h2>
+  <h2>BACK-END</h2>
   <img src="http://dicasdejava.com.br/images/logo-java.png" alt="JAVA" width="36" height="36"/>
   <img src="https://pngset.com/images/spring-framework-logo-01-spring-boot-tennis-ball-sport-plant-symbol-transparent-png-1397241.png" alt="SpringBoote" width="36" height="36"/>
 </div>
