@@ -1,6 +1,7 @@
 package com.empiricus.statusviajante.controller;
 
 import com.empiricus.statusviajante.model.CadastroUsuarioModel;
+import com.empiricus.statusviajante.model.CategoriaGastoModel;
 import com.empiricus.statusviajante.repository.CadastroUsuarioRepository;
 import com.empiricus.statusviajante.service.CadastroUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +21,16 @@ public class CadastroUsuarioController {
 
     @GetMapping
     public ResponseEntity<List<CadastroUsuarioModel>> GetAll() {
+
         return ResponseEntity.ok(cadastroUsuarioRepository.findAll());
+
+
     }
 
     @GetMapping("/{idUsuario}")
     public ResponseEntity<CadastroUsuarioModel> GetById(@PathVariable Long idUsuario) {
         return cadastroUsuarioRepository.findById(idUsuario)
+
                 .map(resp -> ResponseEntity.ok(resp))
                 .orElse(ResponseEntity.notFound().build());
     }
@@ -49,6 +54,7 @@ public class CadastroUsuarioController {
     public void Delete(@PathVariable Long idUsuario) {
         cadastroUsuarioRepository.deleteById(idUsuario);
     }
+}
 
 }
 

@@ -15,16 +15,21 @@ import java.util.List;
 public class CategoriaGastoController {
 
     @Autowired
+
     private CategoriaGastoRepository categoriaGastoRepository;
 
     @GetMapping
     public ResponseEntity<List<CategoriaGastoModel>> GetAll() {
         return ResponseEntity.ok(categoriaGastoRepository.findAll());
+
     }
 
     @GetMapping("/{idCategoria}")
     public ResponseEntity<CategoriaGastoModel> GetById(@PathVariable Long idCategoria) {
+
         return categoriaGastoRepository.findById(idCategoria)
+
+
                 .map(resp -> ResponseEntity.ok(resp))
                 .orElse(ResponseEntity.notFound().build());
     }

@@ -18,8 +18,9 @@ public class ViagemModel {
     private Long idViagem;
 
     @NotNull
-    @Size(min = 3, max = 100)
-    private String nome_viagem;
+
+    @Size(min=3, max=100)
+    private String nomeViagem;
 
     @Size(min = 3, max = 100)
     private String origem;
@@ -31,19 +32,19 @@ public class ViagemModel {
     private String moeda;
 
     @Temporal(TemporalType.DATE)
-    private Date data_ida;
+    private Date dataIda;
 
     @Temporal(TemporalType.DATE)
-    private Date data_volta;
+    private Date dataVolta;
 
     @DecimalMin(value = "0.1")
     private Double orcamento;
 
-    @Min(value = 1)
-    private Integer qtd_pessoas;
+    @Min(value=1)
+    private Integer qtdPessoas;
 
-    @Size(min = 3, max = 200)
-    private String descricao_viagem;
+    @Size(min=3, max=200)
+    private String descricaoViagem;
 
     @OneToMany(mappedBy = "viagem")
     private Set<GastoViagemModel> gastosViagems = new HashSet<>();
@@ -60,12 +61,12 @@ public class ViagemModel {
         this.idViagem = idViagem;
     }
 
-    public String getNome_viagem() {
-        return nome_viagem;
+    public String getNomeViagem() {
+        return nomeViagem;
     }
 
-    public void setNome_viagem(String nome_viagem) {
-        this.nome_viagem = nome_viagem;
+    public void setNomeViagem(String nomeViagem) {
+        this.nomeViagem = nomeViagem;
     }
 
     public String getOrigem() {
@@ -92,20 +93,20 @@ public class ViagemModel {
         this.moeda = moeda;
     }
 
-    public Date getData_ida() {
-        return data_ida;
+    public Date getDataIda() {
+        return dataIda;
     }
 
-    public void setData_ida(Date data_ida) {
-        this.data_ida = data_ida;
+    public void setDataIda(Date data_ida) {
+        this.dataIda = dataIda;
     }
 
-    public Date getData_volta() {
-        return data_volta;
+    public Date getDataVolta() {
+        return dataVolta;
     }
 
-    public void setData_volta(Date data_volta) {
-        this.data_volta = data_volta;
+    public void setDataVolta(Date dataVolta) {
+        this.dataVolta = dataVolta;
     }
 
     public Double getOrcamento() {
@@ -116,20 +117,20 @@ public class ViagemModel {
         this.orcamento = orcamento;
     }
 
-    public Integer getQtd_pessoas() {
-        return qtd_pessoas;
+    public Integer getQtdPessoas() {
+        return qtdPessoas;
     }
 
-    public void setQtd_pessoas(Integer qtd_pessoas) {
-        this.qtd_pessoas = qtd_pessoas;
+    public void setQtdPessoas(Integer qtdPessoas) {
+        this.qtdPessoas = qtdPessoas;
     }
 
-    public String getDescricao_viagem() {
-        return descricao_viagem;
+    public String getDescricaoViagem() {
+        return descricaoViagem;
     }
 
-    public void setDescricao_viagem(String descricao_viagem) {
-        this.descricao_viagem = descricao_viagem;
+    public void setDescricaoViagem(String descricaoViagem) {
+        this.descricaoViagem = descricaoViagem;
     }
 
     public CadastroUsuarioModel getUsuario() {

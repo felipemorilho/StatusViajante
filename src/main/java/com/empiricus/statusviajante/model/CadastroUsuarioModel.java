@@ -1,10 +1,12 @@
 package com.empiricus.statusviajante.model;
 
 import javax.persistence.*;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -57,6 +59,7 @@ public class CadastroUsuarioModel {
         this.usuario = Usuario;
     }
 
+
     @OneToMany(mappedBy = "usuario")
     private Set<ViagemModel> viagens = new HashSet<>();
 
@@ -77,6 +80,7 @@ public class CadastroUsuarioModel {
     }
 
     public Date getDataNascimento() { return dataNascimento;
+
     }
 
     public void setDataNascimento(Date dataNascimento) {
@@ -106,6 +110,7 @@ public class CadastroUsuarioModel {
     public void setSenha(String senha) {
         this.senha = senha;
     }
+
     public String getToken() {
         return token;
     }

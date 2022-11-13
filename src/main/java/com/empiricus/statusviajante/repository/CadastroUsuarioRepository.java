@@ -13,4 +13,5 @@ public interface CadastroUsuarioRepository extends JpaRepository<CadastroUsuario
     public List<CadastroUsuarioModel> findAllByNomeContainingIgnoreCase(String nome);
 
     public Optional<CadastroUsuarioModel> findByUsuario(String username);
+
 }

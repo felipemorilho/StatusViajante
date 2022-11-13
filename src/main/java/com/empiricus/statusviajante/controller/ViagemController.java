@@ -1,5 +1,6 @@
 package com.empiricus.statusviajante.controller;
 
+import com.empiricus.statusviajante.model.GastoViagemModel;
 import com.empiricus.statusviajante.model.ViagemModel;
 import com.empiricus.statusviajante.repository.ViagemRepository;
 import org.springframework.http.HttpStatus;
@@ -40,9 +41,18 @@ public class ViagemController {
     return ResponseEntity.ok(viagemRepository.save(viagem));
     }
 
-    //Apaga Viagem por ID
+    //Deleta Viagem por ID
     @DeleteMapping ("/{id}")
     public void Delete(@PathVariable Long id){
         viagemRepository.deleteById(id);
     }
+
+    //NOVOS ENDPOINTS
+    //Lista Viagens por Usuario ID
+    @GetMapping("usuario/{idUsuario}")
+    public ResponseEntity<List<ViagemModel>> GetAllViagenByIdUsuario(@PathVariable Long idUsuario) {
+        return ResponseEntity.ok(repository.findByUsuario_idUsuario(idUsuario));
+
+    }
+
 }
