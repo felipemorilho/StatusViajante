@@ -39,10 +39,10 @@ public class CadastroUsuarioController {
     public ResponseEntity<CadastroUsuarioModel> post(@RequestBody CadastroUsuarioModel cadastroUsuarioModel) {
         return ResponseEntity.status(HttpStatus.CREATED).body(repCadastro.save(cadastroUsuarioModel));
     }
-    //@PutMapping
-    //public ResponseEntity<CadastroUsuarioModel> put(@RequestBody CadastroUsuarioModel cadastroUsuarioModel) {
-    //return ResponseEntity.ok(repCadastro.save(cadastroUsuarioModel));
-    //}
+    @PutMapping
+    public ResponseEntity<CadastroUsuarioModel> put(@RequestBody CadastroUsuarioModel cadastroUsuarioModel) {
+        return ResponseEntity.ok(repCadastro.save(cadastroUsuarioModel));
+    }
     @DeleteMapping("/{idUsuario}")
     public void Delete(@PathVariable Long idUsuario) {
         repCadastro.deleteById(idUsuario);
