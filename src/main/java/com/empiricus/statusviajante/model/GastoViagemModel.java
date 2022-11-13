@@ -6,7 +6,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "gasto_viagem")
-public class GastoViagem {
+public class GastoViagemModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +21,7 @@ public class GastoViagem {
 
     @ManyToOne
     @JoinColumn(name = "id_categoria")
-    private CategoriaViagem categoriaViagem;
+    private CategoriaGastoModel categoriaGastoModel;
 
     @ManyToOne
     @JoinColumn(name = "id_viagem")
@@ -67,12 +67,12 @@ public class GastoViagem {
         this.descricaoGasto = descricaoGasto;
     }
 
-    public CategoriaViagem getCategoriaViagem() {
-        return categoriaViagem;
+    public CategoriaGastoModel getCategoriaViagem() {
+        return categoriaGastoModel;
     }
 
-    public void setCategoriaViagem(CategoriaViagem categoriaViagem) {
-        this.categoriaViagem = categoriaViagem;
+    public void setCategoriaViagem(CategoriaGastoModel categoriaGastoModel) {
+        this.categoriaGastoModel = categoriaGastoModel;
     }
 
     public ViagemModel getViagem() {

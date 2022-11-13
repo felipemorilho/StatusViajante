@@ -1,5 +1,6 @@
 package com.empiricus.statusviajante.controller;
 
+import com.empiricus.statusviajante.model.GastoViagemModel;
 import com.empiricus.statusviajante.model.ViagemModel;
 import com.empiricus.statusviajante.repository.ViagemRepository;
 
@@ -38,9 +39,21 @@ public class ViagemController {
         return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(viagem));
     }
 
-    //Apaga Viagem por ID
+    //Deleta Viagem por ID
     @DeleteMapping ("/{id}")
     public void Delete(@PathVariable Long id){
         repository.deleteById(id);
     }
+
+    //NOVOS ENDPOINTS
+    //Lista Viagens por Usuario ID
+    @GetMapping("usuario/{idUsuario}")
+    public ResponseEntity<List<ViagemModel>> GetAllViagenByIdUsuario(@PathVariable Long idUsuario) {
+        return ResponseEntity.ok(repository.findByUsuario_idUsuario(idUsuario));
+
+    }
+//    @PutMapping("/{idGasto}")
+//    public ResponseEntity<GastoViagemModel> putGastoById( @RequestBody GastoViagemModel gastoViagem) {
+//        return ResponseEntity.status(HttpStatus.ACCEPTED).body(repositoryGastoViagem.save(gastoViagem));
+//    }
 }
