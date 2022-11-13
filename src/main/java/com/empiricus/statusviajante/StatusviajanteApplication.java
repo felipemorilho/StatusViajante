@@ -9,5 +9,4 @@ public class StatusviajanteApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(StatusviajanteApplication.class, args);
 	}
-
 }
