@@ -38,12 +38,19 @@ public class ViagemController {
     public ResponseEntity<ViagemModel> Post(@RequestBody ViagemModel viagem){
         return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(viagem));
     }
-    //@PutMapping
-    //public ResponseEntity<ViagemModel> put(@RequestBody ViagemModel viagem) {
-       // return ResponseEntity.ok(repository.save(viagem));
-   // }
+
+    //Deleta Viagem por ID
     @DeleteMapping ("/{id}")
     public void Delete(@PathVariable Long id){
         repository.deleteById(id);
     }
+
+    //NOVOS ENDPOINTS
+    //Lista Viagens por Usuario ID
+    @GetMapping("usuario/{idUsuario}")
+    public ResponseEntity<List<ViagemModel>> GetAllViagenByIdUsuario(@PathVariable Long idUsuario) {
+        return ResponseEntity.ok(repository.findByUsuario_idUsuario(idUsuario));
+
+    }
+
 }

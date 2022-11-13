@@ -23,7 +23,7 @@ public class CadastroUsuarioModel {
     @Pattern(regexp = "^((\\b[A-zÀ-ú']{2,40}\\b)\\s*){2,}$", flags = { Pattern.Flag.CASE_INSENSITIVE, Pattern.Flag.MULTILINE }, message = "O nome é inválido.")
     private String nome;
 
-   @NotNull(message = "A data de nascimento deve ser preenchida.")
+    @NotNull(message = "A data de nascimento deve ser preenchida.")
 //    @Pattern(regexp = "(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/(19|20)\\d{2}", flags = {Pattern.Flag.MULTILINE }, message = "A data deve ser no formato dd/mm/aaaa.")
     private Date dataNascimento;
 
@@ -105,4 +105,5 @@ public class CadastroUsuarioModel {
     public void setNomeUsuario(String nomeUsuario) {
         this.nomeUsuario = nomeUsuario;
     }
+
 }
