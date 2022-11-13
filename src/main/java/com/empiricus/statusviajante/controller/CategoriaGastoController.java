@@ -2,7 +2,7 @@ package com.empiricus.statusviajante.controller;
 
 
 import com.empiricus.statusviajante.model.CategoriaGastoModel;
-import com.empiricus.statusviajante.repository.CategoriaViagemRepository;
+import com.empiricus.statusviajante.repository.CategoriaGastoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +16,7 @@ import java.util.List;
 public class CategoriaGastoController {
 
     @Autowired
-    private CategoriaViagemRepository repositoryCategoria;
+    private CategoriaGastoRepository repositoryCategoria;
 
     @GetMapping
     public ResponseEntity<List<CategoriaGastoModel>> GetAll() {
