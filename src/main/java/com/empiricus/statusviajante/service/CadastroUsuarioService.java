@@ -3,21 +3,20 @@ package com.empiricus.statusviajante.service;
 import java.nio.charset.Charset;
 import java.util.Optional;
 
+import com.empiricus.statusviajante.repository.CadastroUsuarioRepository;
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.empiricus.statusviajante.model.UsuarioLoginModel;
 import com.empiricus.statusviajante.model.CadastroUsuarioModel;
-import com.empiricus.statusviajante.repository.UsuarioLoginRepository;
 
 
 @Service
-public class UsuarioService {
+public class CadastroUsuarioService {
 
     @Autowired
-    private UsuarioLoginRepository usuarioLoginRepository;
+    private CadastroUsuarioRepository cadastroUsuarioRepository;
 
     public CadastroUsuarioModel CadastrarUsuario(CadastroUsuarioModel usuario) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -25,13 +24,13 @@ public class UsuarioService {
         String senhaEncoder = encoder.encode(usuario.getSenha());
 
         usuario.setSenha(senhaEncoder);
-        return usuarioLoginRepository.save(usuario);
+        return cadastroUsuarioRepository.save(usuario);
     }
 
-    public Optional<UsuarioLoginModel> Logar(Optional<UsuarioLoginModel> user) {
+    public Optional<CadastroUsuarioModel> Logar(Optional<CadastroUsuarioModel> user) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-        Optional<CadastroUsuarioModel> usuario = usuarioLoginRepository.findByUsuario(user.get().getUsuario());
+        Optional<CadastroUsuarioModel> usuario = cadastroUsuarioRepository.findByUsuario(user.get().getUsuario());
 
         if (usuario.isPresent()) {
             if (encoder.matches(user.get().getSenha(), usuario.get().getSenha())) {

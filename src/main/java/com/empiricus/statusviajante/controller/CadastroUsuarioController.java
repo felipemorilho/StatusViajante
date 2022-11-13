@@ -2,6 +2,7 @@ package com.empiricus.statusviajante.controller;
 
 import com.empiricus.statusviajante.model.CadastroUsuarioModel;
 import com.empiricus.statusviajante.repository.CadastroUsuarioRepository;
+import com.empiricus.statusviajante.service.CadastroUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -48,5 +49,6 @@ public class CadastroUsuarioController {
     public void Delete(@PathVariable Long idUsuario) {
         cadastroUsuarioRepository.deleteById(idUsuario);
     }
+
 }
 
