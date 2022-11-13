@@ -45,7 +45,7 @@ public class GastoViagemController {
         return ResponseEntity.ok(repositoryGastoViagem.findByViagem_idViagem(idViagem));
 
     }
-    @PutMapping("/{idGasto}")
+    @PutMapping
     public ResponseEntity<GastoViagem> putGastoById( @RequestBody GastoViagem gastoViagem) {
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(repositoryGastoViagem.save(gastoViagem));
     }
