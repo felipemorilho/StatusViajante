@@ -20,15 +20,13 @@ Link da Colletion Status:Viajante : __________________
 
 4. Pronto! Você ja pode utilizar nossa API! 
 
-## Linguagens e ferramentas utilizadas nesse desafio:
-<div>
-  <h2>FRONT-END</h2>
+## FRONT-END
   <p>Ainda nao iniciado</p>
-  
-  <h2>BACK-END</h2>
+
+## BACK-END
   <img src="http://dicasdejava.com.br/images/logo-java.png" alt="JAVA" width="36" height="36"/>
   <img src="https://pngset.com/images/spring-framework-logo-01-spring-boot-tennis-ball-sport-plant-symbol-transparent-png-1397241.png" alt="SpringBoote" width="36" height="36"/>
-</div>
+
 # Desenvolvedores
 
  <img src="https://avatars.githubusercontent.com/u/95004294?v=4" width=115>TikYokoyama(https://github.com/TikYokoyama)</br>
