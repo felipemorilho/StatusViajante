@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.empiricus.statusviajante.model.CadastroUsuarioModel;
 
-
+//#Lógica de acesso do usuário, aqui verifica como o usuário vai se cadastrar e logar
 @Service
 public class CadastroUsuarioService {
 
