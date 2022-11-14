@@ -30,8 +30,7 @@ public class CategoriaGastoController {
         return categoriaGastoRepository.findById(idCategoria)
 
 
-                .map(resp -> ResponseEntity.ok(resp))
-                .orElse(ResponseEntity.notFound().build());
+                .map(resp -> ResponseEntity.ok(resp)).orElse(ResponseEntity.notFound().build());
     }
 
     @GetMapping("/nome/{nome}")

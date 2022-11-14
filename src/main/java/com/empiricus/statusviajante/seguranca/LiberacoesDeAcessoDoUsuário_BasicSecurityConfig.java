@@ -12,9 +12,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+//#Classe que faz a liberação dos acessos dos usuários
 @Configuration
 @EnableWebSecurity
-public class BasicSecurityConfig {
+public class LiberacoesDeAcessoDoUsuário_BasicSecurityConfig {
     @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
