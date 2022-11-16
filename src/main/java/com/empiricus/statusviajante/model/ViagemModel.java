@@ -97,7 +97,7 @@ public class ViagemModel {
         return dataIda;
     }
 
-    public void setDataIda(Date data_ida) {
+    public void setDataIda(Date dataIda) {
         this.dataIda = dataIda;
     }
 
