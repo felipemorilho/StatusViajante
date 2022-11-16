@@ -7,6 +7,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -26,7 +27,7 @@ public class CadastroUsuarioModel {
     @NotNull(message = "A data de nascimento deve ser preenchida.")
     // mudei de NotBlank para NotNull
     //@Pattern(regexp = "(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/(19|20)\\d{2}", flags = {Pattern.Flag.MULTILINE}, message = "A data deve ser no formato dd/mm/aaaa.")
-    private String dataNascimento;
+    private Date dataNascimento;
 
     @NotBlank(message = "O email deve ser preenchido.")
     @Size(min = 3, max = 50, message = "O email deve ter entre 3 e 50 caracteres.")
@@ -78,12 +79,12 @@ public class CadastroUsuarioModel {
         this.nome = nome;
     }
 
-    public String getDataNascimento() {
+    public Date getDataNascimento() {
         return dataNascimento;
 
     }
 
-    public void setDataNascimento(String dataNascimento) {
+    public void setDataNascimento(Date dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 
