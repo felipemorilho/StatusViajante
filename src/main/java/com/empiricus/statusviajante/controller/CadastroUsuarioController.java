@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -24,14 +23,12 @@ public class CadastroUsuarioController {
 
     @GetMapping
     public ResponseEntity<List<CadastroUsuarioModel>> GetAll() {
-
         return ResponseEntity.ok(cadastroUsuarioRepository.findAll());
     }
 
     @GetMapping("/{idUsuario}")
     public ResponseEntity<CadastroUsuarioModel> GetById(@PathVariable Long idUsuario) {
         return cadastroUsuarioRepository.findById(idUsuario)
-
                 .map(resp -> ResponseEntity.ok(resp)).orElse(ResponseEntity.notFound().build());
     }
 
@@ -45,22 +42,33 @@ public class CadastroUsuarioController {
     //   return ResponseEntity.status(HttpStatus.CREATED)
     //         .body(cadastroUsuarioRepository.save(cadastroUsuarioModel)); }
     @PostMapping("/cadastrar")
-    public ResponseEntity<CadastroUsuarioModel> post(@RequestBody CadastroUsuarioModel usuario) {
-        return ResponseEntity.status(HttpStatus.CREATED)
-                .body(cadastroUsuarioService.CadastrarUsuario(usuario));
+    public ResponseEntity post(@RequestBody CadastroUsuarioModel usuario) {
+        try {
+           return ResponseEntity.status(HttpStatus.CREATED)
+                   .body(cadastroUsuarioService.CadastrarUsuario(usuario));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body("Usuario já cadastrado.");
+       }
     }
     @PostMapping("/logar")
     public ResponseEntity<CadastroUsuarioModel> Autentication(@RequestBody Optional<CadastroUsuarioModel> user) {
     return cadastroUsuarioService.Logar(user)
                 .map(resp -> ResponseEntity.ok(resp))
-               .orElse(ResponseEntity
-                     .status(HttpStatus.UNAUTHORIZED)
-                   .build());
+                .orElse(ResponseEntity
+                .status(HttpStatus.UNAUTHORIZED)
+                .build());
     }
 
     @PutMapping
-    public ResponseEntity<CadastroUsuarioModel> put(@RequestBody CadastroUsuarioModel cadastroUsuarioModel) {
-        return ResponseEntity.ok(cadastroUsuarioRepository.save(cadastroUsuarioModel));
+    public ResponseEntity put(@RequestBody CadastroUsuarioModel cadastroUsuarioModel) {
+        try {
+            return ResponseEntity.status(HttpStatus.CREATED)
+                    .body(cadastroUsuarioService.CadastrarUsuario(cadastroUsuarioModel));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body("Usuario já cadastrado.");
+        }
     }
 
     @DeleteMapping("/{idUsuario}")
