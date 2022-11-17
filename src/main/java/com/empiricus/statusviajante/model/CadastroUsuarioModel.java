@@ -45,7 +45,6 @@ public class CadastroUsuarioModel {
     private String usuario;
 
     @NotBlank
-    @Size(min = 6, max = 100, message = "A senha deve ter entre 6 e 100 caracteres.")
     //@Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$", message = "Senha não suportada.")
     private String senha;
 

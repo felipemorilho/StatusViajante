@@ -1,5 +1,6 @@
 package com.empiricus.statusviajante.controller;
 
+import com.empiricus.statusviajante.dto.UsuarioDto;
 import com.empiricus.statusviajante.model.CadastroUsuarioModel;
 import com.empiricus.statusviajante.repository.CadastroUsuarioRepository;
 import com.empiricus.statusviajante.service.CadastroUsuarioService;
@@ -42,10 +43,10 @@ public class CadastroUsuarioController {
     //   return ResponseEntity.status(HttpStatus.CREATED)
     //         .body(cadastroUsuarioRepository.save(cadastroUsuarioModel)); }
     @PostMapping("/cadastrar")
-    public ResponseEntity post(@RequestBody CadastroUsuarioModel usuario) {
+    public ResponseEntity post(@RequestBody UsuarioDto usuarioDto) {
         try {
            return ResponseEntity.status(HttpStatus.CREATED)
-                   .body(cadastroUsuarioService.CadastrarUsuario(usuario));
+                   .body(cadastroUsuarioService.CadastrarUsuario(usuarioDto));
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.badRequest().body("Usuario já cadastrado.");
@@ -61,10 +62,10 @@ public class CadastroUsuarioController {
     }
 
     @PutMapping
-    public ResponseEntity put(@RequestBody CadastroUsuarioModel cadastroUsuarioModel) {
+    public ResponseEntity put(@RequestBody UsuarioDto usuarioDto) {
         try {
             return ResponseEntity.status(HttpStatus.CREATED)
-                    .body(cadastroUsuarioService.CadastrarUsuario(cadastroUsuarioModel));
+                    .body(cadastroUsuarioService.CadastrarUsuario(usuarioDto));
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.badRequest().body("Usuario já cadastrado.");
