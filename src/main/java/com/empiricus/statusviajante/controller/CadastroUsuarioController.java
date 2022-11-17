@@ -23,14 +23,13 @@ public class CadastroUsuarioController {
     private CadastroUsuarioService cadastroUsuarioService;
 
     @GetMapping
-    public ResponseEntity<List<CadastroUsuarioModel>> GetAll() {
-        return ResponseEntity.ok(cadastroUsuarioRepository.findAll());
+    public ResponseEntity<List<UsuarioDto>> GetAll() {
+        return ResponseEntity.ok(cadastroUsuarioService.getAll());
     }
 
     @GetMapping("/{idUsuario}")
-    public ResponseEntity<CadastroUsuarioModel> GetById(@PathVariable Long idUsuario) {
-        return cadastroUsuarioRepository.findById(idUsuario)
-                .map(resp -> ResponseEntity.ok(resp)).orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<UsuarioDto> GetById(@PathVariable Long idUsuario) {
+        return ResponseEntity.ok(cadastroUsuarioService.getById(idUsuario));
     }
 
     @GetMapping("/nome/{nome}")
@@ -38,10 +37,6 @@ public class CadastroUsuarioController {
         return ResponseEntity.ok(cadastroUsuarioRepository.findAllByNomeContainingIgnoreCase(nome));
     }
 
-    //@PostMapping
-    //public ResponseEntity<CadastroUsuarioModel> post(@RequestBody CadastroUsuarioModel cadastroUsuarioModel) {
-    //   return ResponseEntity.status(HttpStatus.CREATED)
-    //         .body(cadastroUsuarioRepository.save(cadastroUsuarioModel)); }
     @PostMapping("/cadastrar")
     public ResponseEntity post(@RequestBody UsuarioDto usuarioDto) {
         try {

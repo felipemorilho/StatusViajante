@@ -1,6 +1,7 @@
 package com.empiricus.statusviajante.service;
 
 import java.nio.charset.Charset;
+import java.util.List;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -49,6 +50,16 @@ public class CadastroUsuarioService {
         return cadastroUsuarioRepository.save(usuarioDto.toModel());
     }
 
+    public List<UsuarioDto> getAll() {
+        List<CadastroUsuarioModel> cadastroUsuarioModels = cadastroUsuarioRepository.findAll();
+        return cadastroUsuarioModels.stream()
+                .map(cadastroUsuarioModel -> cadastroUsuarioModel.toDto()).toList();
+    }
+
+    public UsuarioDto getById(Long id) {
+        CadastroUsuarioModel cadastroUsuarioModel = cadastroUsuarioRepository.findById(id).get();
+        return cadastroUsuarioModel.toDto();
+    }
     public Optional<CadastroUsuarioModel> Logar(Optional<CadastroUsuarioModel> user) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
