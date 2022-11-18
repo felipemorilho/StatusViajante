@@ -30,14 +30,24 @@ public class GastoViagemController {
     }
 
     @PostMapping
-    public ResponseEntity<GastoViagemModel> post(@RequestBody GastoViagemModel gastoViagemModel) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(gastoViagemRepository.save(gastoViagemModel));
+    public ResponseEntity post(@RequestBody GastoViagemModel gastoViagemModel) {
+        try {
+            return ResponseEntity.status(HttpStatus.CREATED).body(gastoViagemRepository.save(gastoViagemModel));
+        } catch(Exception exception){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exception.getMessage());
+        }
+
     }
 
     @PutMapping
-    public ResponseEntity<GastoViagemModel> put(@RequestBody GastoViagemModel gastoViagemModel) {
-        return ResponseEntity.ok(gastoViagemRepository.save(gastoViagemModel));
+    public ResponseEntity put(@RequestBody GastoViagemModel gastoViagemModel) {
+        try {
+            return ResponseEntity.ok(gastoViagemRepository.save(gastoViagemModel));
+        } catch(Exception exception){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exception.getMessage());
+        }
     }
+
 
     @DeleteMapping("/{idGasto}")
     public void Delete(@PathVariable Long idGasto) {
