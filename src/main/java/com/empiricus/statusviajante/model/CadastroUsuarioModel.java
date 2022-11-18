@@ -23,7 +23,7 @@ public class CadastroUsuarioModel {
         usuarioDto.setDataNascimento(this.getDataNascimento());
         usuarioDto.setIdUsuario(this.getIdUsuario());
         usuarioDto.setEmail(this.getEmail());
-        usuarioDto.setCelular(this.getEmail());
+        usuarioDto.setCelular(this.getCelular());
         usuarioDto.setUsuario(this.getUsuario());
         usuarioDto.setSenha(this.getSenha());
         usuarioDto.setToken(this.getToken());
