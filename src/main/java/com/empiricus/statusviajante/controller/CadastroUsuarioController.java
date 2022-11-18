@@ -1,5 +1,6 @@
 package com.empiricus.statusviajante.controller;
 
+import com.empiricus.statusviajante.dto.UsuarioDto;
 import com.empiricus.statusviajante.model.CadastroUsuarioModel;
 import com.empiricus.statusviajante.repository.CadastroUsuarioRepository;
 import com.empiricus.statusviajante.service.CadastroUsuarioService;
@@ -22,14 +23,13 @@ public class CadastroUsuarioController {
     private CadastroUsuarioService cadastroUsuarioService;
 
     @GetMapping
-    public ResponseEntity<List<CadastroUsuarioModel>> GetAll() {
-        return ResponseEntity.ok(cadastroUsuarioRepository.findAll());
+    public ResponseEntity<List<UsuarioDto>> GetAll() {
+        return ResponseEntity.ok(cadastroUsuarioService.getAll());
     }
 
     @GetMapping("/{idUsuario}")
-    public ResponseEntity<CadastroUsuarioModel> GetById(@PathVariable Long idUsuario) {
-        return cadastroUsuarioRepository.findById(idUsuario)
-                .map(resp -> ResponseEntity.ok(resp)).orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<UsuarioDto> GetById(@PathVariable Long idUsuario) {
+        return ResponseEntity.ok(cadastroUsuarioService.getById(idUsuario));
     }
 
     @GetMapping("/nome/{nome}")
@@ -37,15 +37,11 @@ public class CadastroUsuarioController {
         return ResponseEntity.ok(cadastroUsuarioRepository.findAllByNomeContainingIgnoreCase(nome));
     }
 
-    //@PostMapping
-    //public ResponseEntity<CadastroUsuarioModel> post(@RequestBody CadastroUsuarioModel cadastroUsuarioModel) {
-    //   return ResponseEntity.status(HttpStatus.CREATED)
-    //         .body(cadastroUsuarioRepository.save(cadastroUsuarioModel)); }
     @PostMapping("/cadastrar")
-    public ResponseEntity post(@RequestBody CadastroUsuarioModel usuario) {
+    public ResponseEntity post(@RequestBody UsuarioDto usuarioDto) {
         try {
            return ResponseEntity.status(HttpStatus.CREATED)
-                   .body(cadastroUsuarioService.CadastrarUsuario(usuario));
+                   .body(cadastroUsuarioService.CadastrarUsuario(usuarioDto));
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.badRequest().body("Usuario já cadastrado.");
@@ -61,10 +57,10 @@ public class CadastroUsuarioController {
     }
 
     @PutMapping
-    public ResponseEntity put(@RequestBody CadastroUsuarioModel cadastroUsuarioModel) {
+    public ResponseEntity put(@RequestBody UsuarioDto usuarioDto) {
         try {
             return ResponseEntity.status(HttpStatus.CREATED)
-                    .body(cadastroUsuarioService.CadastrarUsuario(cadastroUsuarioModel));
+                    .body(cadastroUsuarioService.CadastrarUsuario(usuarioDto));
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.badRequest().body("Usuario já cadastrado.");
@@ -73,7 +69,7 @@ public class CadastroUsuarioController {
 
     @DeleteMapping("/{idUsuario}")
     public void Delete(@PathVariable Long idUsuario) {
-        cadastroUsuarioRepository.deleteById(idUsuario);
+        cadastroUsuarioService.deleteUser(idUsuario);
     }
 }
 

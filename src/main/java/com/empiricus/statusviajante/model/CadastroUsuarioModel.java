@@ -1,10 +1,11 @@
 package com.empiricus.statusviajante.model;
 
+import com.empiricus.statusviajante.dto.UsuarioDto;
+
 import javax.persistence.*;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import java.util.Date;
@@ -15,6 +16,20 @@ import java.util.Set;
 @Table(name = "usuario", uniqueConstraints = @UniqueConstraint(columnNames = "usuario"))
 public class CadastroUsuarioModel {
 
+    public UsuarioDto toDto() {
+        UsuarioDto usuarioDto = new UsuarioDto();
+
+        usuarioDto.setNome(this.getNome());
+        usuarioDto.setDataNascimento(this.getDataNascimento());
+        usuarioDto.setIdUsuario(this.getIdUsuario());
+        usuarioDto.setEmail(this.getEmail());
+        usuarioDto.setCelular(this.getEmail());
+        usuarioDto.setUsuario(this.getUsuario());
+        usuarioDto.setSenha(this.getSenha());
+        usuarioDto.setToken(this.getToken());
+
+        return usuarioDto;
+    }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idUsuario;
@@ -45,7 +60,6 @@ public class CadastroUsuarioModel {
     private String usuario;
 
     @NotBlank
-    @Size(min = 6, max = 100, message = "A senha deve ter entre 6 e 100 caracteres.")
     //@Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$", message = "Senha não suportada.")
     private String senha;
 
