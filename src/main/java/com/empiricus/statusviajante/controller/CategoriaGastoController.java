@@ -39,13 +39,21 @@ public class CategoriaGastoController {
     }
 
     @PostMapping
-    public ResponseEntity<CategoriaGastoModel> post(@RequestBody CategoriaGastoModel categoriaGastoModel) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(categoriaGastoRepository.save(categoriaGastoModel));
+    public ResponseEntity post(@RequestBody CategoriaGastoModel categoriaGastoModel) {
+        try {
+            return ResponseEntity.status(HttpStatus.CREATED).body(categoriaGastoRepository.save(categoriaGastoModel));
+        } catch(Exception exception){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exception.getMessage());
+        }
     }
 
     @PutMapping
-    public ResponseEntity<CategoriaGastoModel> put(@RequestBody CategoriaGastoModel categoriaGastoModel) {
-        return ResponseEntity.ok(categoriaGastoRepository.save(categoriaGastoModel));
+    public ResponseEntity put(@RequestBody CategoriaGastoModel categoriaGastoModel) {
+        try {
+            return ResponseEntity.ok(categoriaGastoRepository.save(categoriaGastoModel));
+        } catch(Exception exception){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exception.getMessage());
+        }
     }
 
     @DeleteMapping("/{idCategoria}")

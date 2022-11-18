@@ -44,7 +44,7 @@ public class CadastroUsuarioController {
                    .body(cadastroUsuarioService.CadastrarUsuario(usuarioDto));
         } catch (Exception e) {
             e.printStackTrace();
-            return ResponseEntity.badRequest().body("Usuario já cadastrado.");
+            return ResponseEntity.badRequest().body(e.getMessage());
        }
     }
     @PostMapping("/logar")
@@ -63,7 +63,7 @@ public class CadastroUsuarioController {
                     .body(cadastroUsuarioService.CadastrarUsuario(usuarioDto));
         } catch (Exception e) {
             e.printStackTrace();
-            return ResponseEntity.badRequest().body("Usuario já cadastrado.");
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
