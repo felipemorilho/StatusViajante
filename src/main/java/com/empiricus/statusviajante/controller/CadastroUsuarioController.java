@@ -69,7 +69,7 @@ public class CadastroUsuarioController {
 
     @DeleteMapping("/{idUsuario}")
     public void Delete(@PathVariable Long idUsuario) {
-        cadastroUsuarioRepository.deleteById(idUsuario);
+        cadastroUsuarioService.deleteUser(idUsuario);
     }
 }
 

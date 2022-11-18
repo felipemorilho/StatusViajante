@@ -60,6 +60,11 @@ public class CadastroUsuarioService {
         CadastroUsuarioModel cadastroUsuarioModel = cadastroUsuarioRepository.findById(id).get();
         return cadastroUsuarioModel.toDto();
     }
+
+    public void deleteUser(Long idUsuario){
+        cadastroUsuarioRepository.deleteById(idUsuario);
+    }
+
     public Optional<CadastroUsuarioModel> Logar(Optional<CadastroUsuarioModel> user) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
