@@ -22,4 +22,10 @@ class GastoViagemModel {
     @ManyToOne
     @JoinColumn(name = "id_viagem")
     var viagem: ViagemModel? = null
+
+    @ManyToOne
+    @JoinColumn(name = "categoria_gasto_model_id_categoria")
+    open var categoriaGastoModel: CategoriaGastoModel? = null
+
+    //TODO
 }

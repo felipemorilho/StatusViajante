@@ -10,7 +10,7 @@ class CategoriaGastoModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var idCategoria: Long? = null
-    var nome: @NotNull @Size(min = 3, max = 50) String? = null
+    lateinit var nome: @NotNull @Size(min = 3, max = 50) String
 
     @OneToMany(mappedBy = "categoriaGastoModel")
     private val gastosViagem: Set<GastoViagemModel> = HashSet()
