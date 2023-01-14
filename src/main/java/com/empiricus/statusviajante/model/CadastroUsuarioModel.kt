@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull
 import javax.validation.constraints.Size
 
 @Entity
-@Table(name = "usuario")//, uniqueConstraints = [UniqueConstraint(columnNames = "usuario")])
+@Table(name = "usuario", uniqueConstraints = [UniqueConstraint(columnNames = ["usuario"])])
 class CadastroUsuarioModel (
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,10 +47,9 @@ class CadastroUsuarioModel (
     ) String = "",
 
     //@Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$", message = "Senha não suportada.")
-    var senha: @NotBlank String = "",
-    var token: String = ""
+    var senha: @NotBlank String = ""
         ){
-
+    var token: String? = null
     fun toDto(): UsuarioDto {
         val usuarioDto = UsuarioDto()
         usuarioDto.nome = nome
