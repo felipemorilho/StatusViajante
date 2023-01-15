@@ -1,78 +1,77 @@
-package com.empiricus.statusviajante.controller;
+package com.empiricus.statusviajante.controller
 
-import com.empiricus.statusviajante.dto.UsuarioDto;
-import com.empiricus.statusviajante.model.CadastroUsuarioModel;
-import com.empiricus.statusviajante.repository.CadastroUsuarioRepository;
-import com.empiricus.statusviajante.service.CadastroUsuarioService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.*;
-import java.util.List;
-import java.util.Optional;
+import com.empiricus.statusviajante.dto.UsuarioDto
+import com.empiricus.statusviajante.model.CadastroUsuarioModel
+import com.empiricus.statusviajante.repository.CadastroUsuarioRepository
+import com.empiricus.statusviajante.service.CadastroUsuarioService
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.http.HttpStatus
+import org.springframework.http.ResponseEntity
+import org.springframework.stereotype.Component
+import org.springframework.web.bind.annotation.*
+import java.util.*
+import java.util.function.Function
 
 @RestController
 @Component
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+@CrossOrigin(origins = ["*"], allowedHeaders = ["*"])
 @RequestMapping("/usuarios")
-public class CadastroUsuarioController {
+class CadastroUsuarioController {
+    @Autowired
+    private val cadastroUsuarioRepository: CadastroUsuarioRepository? = null
 
     @Autowired
-    private CadastroUsuarioRepository cadastroUsuarioRepository;
-
-    @Autowired
-    private CadastroUsuarioService cadastroUsuarioService;
-
+    private val cadastroUsuarioService: CadastroUsuarioService? = null
     @GetMapping
-    public ResponseEntity<List<UsuarioDto>> GetAll() {
-        return ResponseEntity.ok(cadastroUsuarioService.getAll());
+    fun GetAll(): ResponseEntity<List<UsuarioDto>> {
+        return ResponseEntity.ok(cadastroUsuarioService!!.all)
     }
 
     @GetMapping("/{idUsuario}")
-    public ResponseEntity<UsuarioDto> GetById(@PathVariable Long idUsuario) {
-        return ResponseEntity.ok(cadastroUsuarioService.getById(idUsuario));
+    fun GetById(@PathVariable idUsuario: Long?): ResponseEntity<UsuarioDto> {
+        return ResponseEntity.ok(cadastroUsuarioService!!.getById(idUsuario!!))
     }
 
     @GetMapping("/nome/{nome}")
-    public ResponseEntity<List<CadastroUsuarioModel>> GetByNome(@PathVariable String nome) {
-        return ResponseEntity.ok(cadastroUsuarioRepository.findAllByNomeContainingIgnoreCase(nome));
+    fun GetByNome(@PathVariable nome: String?): ResponseEntity<List<CadastroUsuarioModel?>?> {
+        return ResponseEntity.ok(cadastroUsuarioRepository!!.findAllByNomeContainingIgnoreCase(nome))
     }
 
     @PostMapping("/cadastrar")
-    public ResponseEntity post(@RequestBody UsuarioDto usuarioDto) {
-        try {
-           return ResponseEntity.status(HttpStatus.CREATED)
-                   .body(cadastroUsuarioService.CadastrarUsuario(usuarioDto));
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseEntity.badRequest().body(e.getMessage());
-       }
+    fun post(@RequestBody usuarioDto: UsuarioDto?): ResponseEntity<*> {
+        return try {
+            ResponseEntity.status(HttpStatus.CREATED)
+                .body(cadastroUsuarioService!!.CadastrarUsuario(usuarioDto!!))
+        } catch (e: Exception) {
+            e.printStackTrace()
+            ResponseEntity.badRequest().body(e.message)
+        }
     }
+
     @PostMapping("/logar")
-    public ResponseEntity<CadastroUsuarioModel> Autentication(@RequestBody Optional<CadastroUsuarioModel> user) {
-    return cadastroUsuarioService.Logar(user)
-                .map(resp -> ResponseEntity.ok(resp))
-                .orElse(ResponseEntity
-                .status(HttpStatus.UNAUTHORIZED)
-                .build());
+    fun Autentication(@RequestBody user: Optional<CadastroUsuarioModel>): ResponseEntity<CadastroUsuarioModel> {
+        return cadastroUsuarioService!!.Logar(user)
+            ?.map(Function { resp: CadastroUsuarioModel -> ResponseEntity.ok(resp) })
+            ?.orElse(
+                ResponseEntity
+                    .status(HttpStatus.UNAUTHORIZED)
+                    .build()
+            )!!
     }
 
     @PutMapping
-    public ResponseEntity put(@RequestBody UsuarioDto usuarioDto) {
-        try {
-            return ResponseEntity.status(HttpStatus.CREATED)
-                    .body(cadastroUsuarioService.CadastrarUsuario(usuarioDto));
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseEntity.badRequest().body(e.getMessage());
+    fun put(@RequestBody usuarioDto: UsuarioDto?): ResponseEntity<*> {
+        return try {
+            ResponseEntity.status(HttpStatus.CREATED)
+                .body(cadastroUsuarioService!!.CadastrarUsuario(usuarioDto!!))
+        } catch (e: Exception) {
+            e.printStackTrace()
+            ResponseEntity.badRequest().body(e.message)
         }
     }
 
     @DeleteMapping("/{idUsuario}")
-    public void Delete(@PathVariable Long idUsuario) {
-        cadastroUsuarioService.deleteUser(idUsuario);
+    fun Delete(@PathVariable idUsuario: Long?) {
+        cadastroUsuarioService!!.deleteUser(idUsuario!!)
     }
 }
-
-
