@@ -1,9 +1,10 @@
 package com.empiricus.statusviajante.security;
 
 import java.util.Collection;
+
+import com.empiricus.statusviajante.model.CadastroUsuarioModel;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import com.empiricus.statusviajante.model.CadastroUsuarioModel;
 
 //#Nessa classe pegamos o usuario e senha da classe de cadastro para autorizar o acesso ao sistema
 public class UserLogin implements UserDetails{

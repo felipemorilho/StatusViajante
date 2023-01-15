@@ -50,7 +50,7 @@ class CadastroUsuarioController {
 
     @PostMapping("/logar")
     fun Autentication(@RequestBody user: Optional<CadastroUsuarioModel>): ResponseEntity<CadastroUsuarioModel> {
-        return cadastroUsuarioService!!.Logar(user)
+        return cadastroUsuarioService!!.logar(user)
             ?.map(Function { resp: CadastroUsuarioModel -> ResponseEntity.ok(resp) })
             ?.orElse(
                 ResponseEntity

@@ -1,5 +1,6 @@
 package com.empiricus.statusviajante.dto;
 
+
 import com.empiricus.statusviajante.model.CadastroUsuarioModel;
 
 import java.util.Date;
