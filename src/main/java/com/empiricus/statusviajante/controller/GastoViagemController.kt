@@ -1,64 +1,57 @@
-package com.empiricus.statusviajante.controller;
+package com.empiricus.statusviajante.controller
 
-import com.empiricus.statusviajante.model.GastoViagemModel;
-import com.empiricus.statusviajante.repository.GastoViagemRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import com.empiricus.statusviajante.model.GastoViagemModel
+import com.empiricus.statusviajante.repository.GastoViagemRepository
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.http.HttpStatus
+import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.*
+import java.util.function.Function
 
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/gasto_viagem")
-public class GastoViagemController {
-
+class GastoViagemController {
     @Autowired
-    private GastoViagemRepository gastoViagemRepository;
-
+    private val gastoViagemRepository: GastoViagemRepository? = null
     @GetMapping
-    public ResponseEntity<List<GastoViagemModel>> GetAll() {
-        return ResponseEntity.ok(gastoViagemRepository.findAll());
+    fun GetAll(): ResponseEntity<List<GastoViagemModel?>> {
+        return ResponseEntity.ok(gastoViagemRepository!!.findAll())
     }
 
     @GetMapping("/{idGasto}")
-    public ResponseEntity<GastoViagemModel> GetById(@PathVariable Long idGasto) {
-        return gastoViagemRepository.findById(idGasto)
-                .map(response -> ResponseEntity.ok(response))
-                .orElse(ResponseEntity.notFound().build());
+    fun GetById(@PathVariable idGasto: Long?): ResponseEntity<GastoViagemModel> {
+        return gastoViagemRepository!!.findById(idGasto!!)
+            .map<ResponseEntity<GastoViagemModel>>(Function { response: GastoViagemModel? -> ResponseEntity.ok(response) })
+            .orElse(ResponseEntity.notFound().build())
     }
 
     @PostMapping
-    public ResponseEntity post(@RequestBody GastoViagemModel gastoViagemModel) {
-        try {
-            return ResponseEntity.status(HttpStatus.CREATED).body(gastoViagemRepository.save(gastoViagemModel));
-        } catch(Exception exception){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exception.getMessage());
+    fun post(@RequestBody gastoViagemModel: GastoViagemModel): ResponseEntity<*> {
+        return try {
+            ResponseEntity.status(HttpStatus.CREATED).body(gastoViagemRepository!!.save(gastoViagemModel))
+        } catch (exception: Exception) {
+            ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exception.message)
         }
-
     }
 
     @PutMapping
-    public ResponseEntity put(@RequestBody GastoViagemModel gastoViagemModel) {
-        try {
-            return ResponseEntity.ok(gastoViagemRepository.save(gastoViagemModel));
-        } catch(Exception exception){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exception.getMessage());
+    fun put(@RequestBody gastoViagemModel: GastoViagemModel): ResponseEntity<*> {
+        return try {
+            ResponseEntity.ok(gastoViagemRepository!!.save(gastoViagemModel))
+        } catch (exception: Exception) {
+            ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exception.message)
         }
     }
 
-
     @DeleteMapping("/{idGasto}")
-    public void Delete(@PathVariable Long idGasto) {
-        gastoViagemRepository.deleteById(idGasto);
+    fun Delete(@PathVariable idGasto: Long) {
+        gastoViagemRepository!!.deleteById(idGasto)
     }
 
     //NOVOS ENDPOINTS
     @GetMapping("viagem/{idViagem}")
-    public ResponseEntity<List<GastoViagemModel>> GetAllGastosByIdViagem(@PathVariable Long idViagem) {
-        return ResponseEntity.ok(gastoViagemRepository.findByViagem_idViagem(idViagem));
-
+    fun GetAllGastosByIdViagem(@PathVariable idViagem: Long?): ResponseEntity<List<GastoViagemModel?>?> {
+        return ResponseEntity.ok(gastoViagemRepository!!.findByViagem_idViagem(idViagem))
     }
-
 }
