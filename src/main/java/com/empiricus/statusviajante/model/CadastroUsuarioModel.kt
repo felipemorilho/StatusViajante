@@ -63,8 +63,6 @@ class CadastroUsuarioModel (
         return usuarioDto
     }
 
-
-
     @OneToMany(mappedBy = "usuario")
     private val viagens: Set<ViagemModel> = HashSet()
 }
