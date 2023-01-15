@@ -1,4 +1,4 @@
-package com.empiricus.statusviajante.seguranca;
+package com.empiricus.statusviajante.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,7 +15,7 @@ import org.springframework.security.web.SecurityFilterChain;
 //#Classe que faz a liberação dos acessos dos usuários
 @Configuration
 @EnableWebSecurity
-public class LiberacoesDeAcessoDoUsuário_BasicSecurityConfig {
+public class SecurityConfig {
     @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
