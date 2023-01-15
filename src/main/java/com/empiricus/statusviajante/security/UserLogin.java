@@ -1,4 +1,4 @@
-package com.empiricus.statusviajante.seguranca;
+package com.empiricus.statusviajante.security;
 
 import java.util.Collection;
 import org.springframework.security.core.GrantedAuthority;
@@ -6,17 +6,17 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.empiricus.statusviajante.model.CadastroUsuarioModel;
 
 //#Nessa classe pegamos o usuario e senha da classe de cadastro para autorizar o acesso ao sistema
-public class LoginDoUsuario_UserDetailsImpl implements UserDetails{
+public class UserLogin implements UserDetails{
 
    private static final long serialVersionUID = 1L;
 
     private String userName;
     private String password;
-    public LoginDoUsuario_UserDetailsImpl(CadastroUsuarioModel user) {
+    public UserLogin(CadastroUsuarioModel user) {
         this.userName = user.getUsuario();
         this.password = user.getSenha();
     }
-    public LoginDoUsuario_UserDetailsImpl() {
+    public UserLogin() {
     }
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
