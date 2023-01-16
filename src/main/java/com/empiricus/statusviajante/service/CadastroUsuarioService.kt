@@ -1,3 +1,4 @@
+
 package com.empiricus.statusviajante.service
 
 import com.empiricus.statusviajante.dto.UsuarioDto
@@ -45,7 +46,7 @@ class CadastroUsuarioService {
         cadastroUsuarioRepository!!.deleteById(idUsuario)
     }
 
-    fun Logar(user: Optional<CadastroUsuarioModel>): Optional<CadastroUsuarioModel>? {
+    fun logar(user: Optional<CadastroUsuarioModel>): Optional<CadastroUsuarioModel>? {
         val encoder = BCryptPasswordEncoder()
         val usuario = cadastroUsuarioRepository!!.findByUsuario(user.get().usuario)
         if (usuario!!.isPresent) {
