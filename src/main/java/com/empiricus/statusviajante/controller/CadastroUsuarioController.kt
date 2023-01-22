@@ -74,13 +74,20 @@ class CadastroUsuarioController {
 
     @PutMapping
     fun put(@RequestBody usuarioDto: UsuarioDto?): ResponseEntity<*> {
-        return try {
-            ResponseEntity.status(HttpStatus.CREATED)
-                .body(cadastroUsuarioService!!.CadastrarUsuario(usuarioDto!!))
-        } catch (e: Exception) {
-            e.printStackTrace()
-            ResponseEntity.badRequest().body(e.message)
+        var currentIdUser = cadastroUsuarioService?.getCurrentUserId()
+
+        if (usuarioDto?.idUsuario?.equals(currentIdUser)!!) {
+            try {
+                return ResponseEntity.status(HttpStatus.CREATED)
+                    .body(cadastroUsuarioService!!.CadastrarUsuario(usuarioDto!!))
+            } catch (e: Exception) {
+                ResponseEntity.badRequest().body(e.message)
+            }
+        } else {
+            return ResponseEntity.badRequest().body("Modificação não permitida.")
         }
+
+        return ResponseEntity.ok().body("Modificação aceita.")
     }
 
     @DeleteMapping("/{idUsuario}")
