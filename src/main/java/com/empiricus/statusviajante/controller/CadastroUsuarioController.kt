@@ -28,13 +28,26 @@ class CadastroUsuarioController {
     }
 
     @GetMapping("/{idUsuario}")
-    fun GetById(@PathVariable idUsuario: Long?): ResponseEntity<UsuarioDto> {
-        return ResponseEntity.ok(cadastroUsuarioService!!.getById(idUsuario!!))
+    fun GetById(@PathVariable idUsuario: Long?): Any? {
+        var currentIdUser = cadastroUsuarioService?.getCurrentUserId()
+
+        return if (idUsuario == currentIdUser) {
+            ResponseEntity.ok(cadastroUsuarioService!!.getById(idUsuario!!))
+        } else {
+            ResponseEntity.badRequest().body("User not found or operation not permitted.")
+        }
     }
 
+    //TODO: ARRUMAR RETORNO METODO
     @GetMapping("/nome/{nome}")
-    fun GetByNome(@PathVariable nome: String?): ResponseEntity<List<CadastroUsuarioModel?>?> {
-        return ResponseEntity.ok(cadastroUsuarioRepository!!.findAllByNomeContainingIgnoreCase(nome))
+    fun GetByNome(@PathVariable nome: String?): Any? {
+        var currentIdUser = cadastroUsuarioService?.getCurrentUserId()
+
+        var users = cadastroUsuarioRepository!!.findAllByNomeContainingIgnoreCase(nome)
+
+        var foundUsers = users?.filter { user -> user?.idUsuario == currentIdUser }
+
+        return ResponseEntity.ok(foundUsers)
     }
 
     @PostMapping("/cadastrar")
@@ -42,7 +55,7 @@ class CadastroUsuarioController {
         return try {
             ResponseEntity.status(HttpStatus.CREATED)
                 .body(cadastroUsuarioService!!.CadastrarUsuario(usuarioDto!!))
-        } catch (e: Exception) {
+        } catch (e: Exception)  {
             e.printStackTrace()
             ResponseEntity.badRequest().body(e.message)
         }
@@ -71,7 +84,16 @@ class CadastroUsuarioController {
     }
 
     @DeleteMapping("/{idUsuario}")
-    fun Delete(@PathVariable idUsuario: Long?) {
-        cadastroUsuarioService!!.deleteUser(idUsuario!!)
+    fun delete(@PathVariable idUsuario: Long?): ResponseEntity<String> {
+
+        var currentIdUser = cadastroUsuarioService?.getCurrentUserId()
+        if (idUsuario != null) {
+            if (idUsuario.equals(currentIdUser)) {
+                cadastroUsuarioService?.deleteUser(idUsuario)
+            } else {
+                return ResponseEntity.badRequest().body("User not found or operation not permitted.")
+            }
+        }
+        return ResponseEntity.ok().body("Usuario deletado")
     }
 }
