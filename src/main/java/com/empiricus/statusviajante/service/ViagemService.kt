@@ -22,16 +22,12 @@ class ViagemService {
         }
     }
 
-    fun buscarTodasViagens(): List<ViagemModel?> {
-        return viagemRepository!!.findAll()
+    fun buscarViagemId(idViagem: Long, idUser : Long): Optional<ViagemModel?>? {
+        return  viagemRepository?.findByUsuario_idUsuarioAndIdViagem(idUser, idViagem)
     }
 
-    fun buscarViagemId(id: Long?): Optional<ViagemModel?> {
-        return viagemRepository!!.findById(id!!)
-    }
-
-    fun deletarViagemId(id: Long) {
-        viagemRepository!!.deleteById(id)
+    fun deletarViagemId(idViagem: Long?) {
+       return viagemRepository!!.deleteById(idViagem)
     }
 
     fun buscarViagemPorUsuario(idUsuario: Long?): List<ViagemModel?>? {
