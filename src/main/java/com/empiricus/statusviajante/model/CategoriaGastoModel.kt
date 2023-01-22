@@ -12,6 +12,7 @@ class CategoriaGastoModel {
     var idCategoria: Long? = null
     var nome: @NotNull @Size(min = 3, max = 50) String? = null
 
+
     @OneToMany(mappedBy = "categoriaViagem")
     private val gastosViagem: Set<GastoViagemModel> = HashSet()
 }
