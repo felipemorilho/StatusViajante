@@ -50,10 +50,18 @@ class ViagemController {
 
     @PutMapping
     fun put(@RequestBody viagem: ViagemModel?): ResponseEntity<*> {
-        return try {
-            ResponseEntity.status(HttpStatus.CREATED).body(viagemService!!.salvarViagem(viagem!!))
-        } catch (exception: Exception) {
-            ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exception.message)
+
+        var currentIdUser = cadastroUsuarioService?.getCurrentUserId()
+        var currentViagem = viagemService?.buscarViagemId(viagem?.idViagem!!, currentIdUser!!)
+
+        if(currentViagem?.get()?.usuario?.idUsuario?.equals(currentIdUser)!!) {
+            try {
+               return ResponseEntity.status(HttpStatus.CREATED).body(viagemService!!.salvarViagem(viagem!!))
+            } catch (exception: Exception) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exception.message)
+            }
+        } else {
+            return ResponseEntity.badRequest().body("Modificação não permitida.")
         }
     }
 
