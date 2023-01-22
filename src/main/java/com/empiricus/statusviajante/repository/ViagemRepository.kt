@@ -11,4 +11,7 @@ interface ViagemRepository : JpaRepository<ViagemModel?, Long?> {
     fun findById(idViagem: Long): Optional<ViagemModel?>
 
     fun findByUsuario_idUsuario(idViagem: Long?): List<ViagemModel?>?
+
+    fun findByUsuario_idUsuarioAndIdViagem(idUsuario: Long?, idViagem: Long): Optional<ViagemModel?>
+
 }

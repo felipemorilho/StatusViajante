@@ -6,6 +6,7 @@ import com.empiricus.statusviajante.model.CadastroUsuarioModel
 import com.empiricus.statusviajante.repository.CadastroUsuarioRepository
 import org.apache.commons.codec.binary.Base64
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Service
 import java.nio.charset.Charset
@@ -42,8 +43,8 @@ class CadastroUsuarioService {
         return cadastroUsuarioModel.toDto()
     }
 
-    fun deleteUser(idUsuario: Long) {
-        cadastroUsuarioRepository!!.deleteById(idUsuario)
+    fun deleteUser(idUsuario: Long?) {
+        return cadastroUsuarioRepository!!.deleteById(idUsuario)
     }
 
     fun logar(user: Optional<CadastroUsuarioModel>): Optional<CadastroUsuarioModel>? {
@@ -60,6 +61,13 @@ class CadastroUsuarioService {
             }
         }
         return null
+    }
+
+    fun getCurrentUserId() : Long? {
+        var loggedUsername = SecurityContextHolder.getContext().authentication.name
+        var currentIdUser = cadastroUsuarioRepository?.findByUsuario(loggedUsername)?.get()?.idUsuario
+
+        return currentIdUser
     }
 
     companion object {
