@@ -1,5 +1,6 @@
 package com.empiricus.statusviajante.controller
 
+import com.empiricus.statusviajante.model.CadastroUsuarioModel
 import com.empiricus.statusviajante.model.ViagemModel
 import com.empiricus.statusviajante.service.CadastroUsuarioService
 import com.empiricus.statusviajante.service.ViagemService
@@ -42,6 +43,9 @@ class ViagemController {
     @Throws(Exception::class)
     fun Post(@RequestBody viagem: ViagemModel?): ResponseEntity<*> {
         return try {
+            var currentIdUser = cadastroUsuarioService?.getCurrentUserId()
+            viagem?.usuario = CadastroUsuarioModel(currentIdUser)
+
             ResponseEntity.status(HttpStatus.CREATED).body(viagemService!!.salvarViagem(viagem!!))
         } catch (exception: Exception) {
             ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exception.message)
