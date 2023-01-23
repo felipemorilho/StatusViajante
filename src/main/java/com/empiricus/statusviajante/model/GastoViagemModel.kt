@@ -16,10 +16,10 @@ class GastoViagemModel {
     var descricaoGasto: String? = null
 
     @ManyToOne
-    @JoinColumn(name = "id_viagem")
+    @JoinColumn(name = "idViagem")
     var viagem: ViagemModel? = null
 
     @ManyToOne
-    @JoinColumn(name = "id_categoria")
-    open var categoriaGastoModel: CategoriaGastoModel? = null
+    @JoinColumn(name = "idCategoria")
+    var categoriaViagem: CategoriaGastoModel? = null
 }
