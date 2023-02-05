@@ -4,6 +4,7 @@ package com.empiricus.statusviajante.service
 import com.empiricus.statusviajante.dto.UsuarioDto
 import com.empiricus.statusviajante.model.CadastroUsuarioModel
 import com.empiricus.statusviajante.repository.CadastroUsuarioRepository
+import com.empiricus.statusviajante.repository.GastoViagemRepository
 import org.apache.commons.codec.binary.Base64
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.core.context.SecurityContextHolder
@@ -18,6 +19,13 @@ import java.util.regex.Pattern
 class CadastroUsuarioService {
     @Autowired
     private val cadastroUsuarioRepository: CadastroUsuarioRepository? = null
+
+    @Autowired
+    private  val viagemService : ViagemService? = null
+
+    @Autowired
+    private val gastoViagemRepository : GastoViagemRepository? = null
+
     @Throws(Exception::class)
     fun CadastrarUsuario(usuarioDto: UsuarioDto): CadastroUsuarioModel {
         val validadorSenha = Pattern.compile(PASSWORD_PATTERN)
@@ -44,6 +52,15 @@ class CadastroUsuarioService {
     }
 
     fun deleteUser(idUsuario: Long?) {
+        val listaViagens = viagemService?.buscarViagemPorUsuario(idUsuario)
+        if (listaViagens != null) {
+            for (viagem in listaViagens) {
+                gastoViagemRepository?.deleteByViagem_idViagem(viagem?.idViagem)
+            }
+        }
+
+        viagemService?.deletarViagemByUser(idUsuario)
+
         return cadastroUsuarioRepository!!.deleteById(idUsuario)
     }
 

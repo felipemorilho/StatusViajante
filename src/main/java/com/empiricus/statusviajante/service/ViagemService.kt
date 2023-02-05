@@ -33,4 +33,8 @@ class ViagemService {
     fun buscarViagemPorUsuario(idUsuario: Long?): List<ViagemModel?>? {
         return viagemRepository!!.findByUsuario_idUsuario(idUsuario)
     }
+
+    fun deletarViagemByUser(idUsuario: Long?) {
+         viagemRepository!!.deleteByUsuario_idUsuario(idUsuario)
+    }
 }
