@@ -74,6 +74,7 @@ class CadastroUsuarioService {
                 val authHeader = "Basic " + String(encodedAuth)
                 user.get().token = authHeader
                 user.get().nome = usuario.get().nome
+                user.get().senha = ""
                 return user
             }
         }
