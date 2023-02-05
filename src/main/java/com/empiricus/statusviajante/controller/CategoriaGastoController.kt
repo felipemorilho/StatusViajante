@@ -35,26 +35,26 @@ class CategoriaGastoController {
         )
     }
 
-    @PostMapping
-    fun post(@RequestBody categoriaGastoModel: CategoriaGastoModel): ResponseEntity<*> {
-        return try {
-            ResponseEntity.status(HttpStatus.CREATED).body(categoriaGastoRepository!!.save(categoriaGastoModel))
-        } catch (exception: Exception) {
-            ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exception.message)
-        }
-    }
+//    @PostMapping
+//    fun post(@RequestBody categoriaGastoModel: CategoriaGastoModel): ResponseEntity<*> {
+//        return try {
+//            ResponseEntity.status(HttpStatus.CREATED).body(categoriaGastoRepository!!.save(categoriaGastoModel))
+//        } catch (exception: Exception) {
+//            ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exception.message)
+//        }
+//    }
 
-    @PutMapping
-    fun put(@RequestBody categoriaGastoModel: CategoriaGastoModel): ResponseEntity<*> {
-        return try {
-            ResponseEntity.ok(categoriaGastoRepository!!.save(categoriaGastoModel))
-        } catch (exception: Exception) {
-            ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exception.message)
-        }
-    }
-
-    @DeleteMapping("/{idCategoria}")
-    fun Delete(@PathVariable idCategoria: Long) {
-        categoriaGastoRepository!!.deleteById(idCategoria)
-    }
+//    @PutMapping
+//    fun put(@RequestBody categoriaGastoModel: CategoriaGastoModel): ResponseEntity<*> {
+//        return try {
+//            ResponseEntity.ok(categoriaGastoRepository!!.save(categoriaGastoModel))
+//        } catch (exception: Exception) {
+//            ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exception.message)
+//        }
+//    }
+//
+//    @DeleteMapping("/{idCategoria}")
+//    fun Delete(@PathVariable idCategoria: Long) {
+//        categoriaGastoRepository!!.deleteById(idCategoria)
+//    }
 }
