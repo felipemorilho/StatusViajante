@@ -14,5 +14,5 @@ interface GastoViagemRepository : JpaRepository<GastoViagemModel?, Long?> {
     fun findByViagem_idViagem(idViagem: Long?): List<GastoViagemModel?>?
 
     @Transactional
-    fun deleteByViagem_idViagem(idViagem: Long?) : Int
+    fun deleteByViagem_idViagem(idViagem: Long?) : Int?
 }
