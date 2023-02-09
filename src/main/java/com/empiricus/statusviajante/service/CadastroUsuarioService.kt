@@ -30,8 +30,27 @@ class CadastroUsuarioService {
     fun CadastrarUsuario(usuarioDto: UsuarioDto): CadastroUsuarioModel {
         val validadorSenha = Pattern.compile(PASSWORD_PATTERN)
         val matcher = validadorSenha.matcher(usuarioDto.senha)
+
+        val validadorNome = Pattern.compile(NOME_PATTERN)
+        val matcherNome = validadorNome.matcher(usuarioDto.nome)
+
+        val validadorCelular = Pattern.compile(CELULAR_PATTERN)
+        val matcherCelular = validadorCelular.matcher(usuarioDto.celular)
+
+        val validadorUsuario = Pattern.compile(USUARIO_PATTERN)
+        val matcherUsuario = validadorUsuario.matcher((usuarioDto.usuario))
+
         if (matcher.matches() == false) {
             throw Exception("Senha inválida.")
+        }
+        if (matcherNome.matches() == false){
+            throw Exception("Nome inválido")
+        }
+        if (matcherCelular.matches() == false){
+            throw Exception("Número de celular inválido")
+        }
+        if (matcherUsuario.matches() == false){
+            throw Exception("Nome de usuário inválido.")
         }
         val encoder = BCryptPasswordEncoder()
         val senhaEncoded = encoder.encode(usuarioDto.senha)
@@ -89,6 +108,11 @@ class CadastroUsuarioService {
     }
 
     companion object {
+
+        private const val NOME_PATTERN = "^((\\b[A-zÀ-ú']{2,40}\\b)\\s*){2,}$"
+        private const val CELULAR_PATTERN = "^((\\b[0-9]{11,11}\\b)*){0,}$"
+        private const val USUARIO_PATTERN = "^[a-zA-Z0-9]([._-](?![._-])|[a-zA-Z0-9]){3,18}[a-zA-Z0-9]$"
+
         /**
          * Password must contain at least one digit [0-9].
          * Password must contain at least one lowercase Latin character [a-z].
