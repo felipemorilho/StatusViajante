@@ -54,7 +54,7 @@ class CadastroUsuarioController {
     fun post(@RequestBody usuarioDto: UsuarioDto?): ResponseEntity<*> {
         return try {
             ResponseEntity.status(HttpStatus.CREATED)
-                .body(cadastroUsuarioService!!.CadastrarUsuario(usuarioDto!!))
+                .body(cadastroUsuarioService!!.cadastrarUsuario(usuarioDto!!))
         } catch (e: Exception)  {
             e.printStackTrace()
             ResponseEntity.badRequest().body(e.message)
@@ -79,7 +79,7 @@ class CadastroUsuarioController {
         if (usuarioDto?.idUsuario?.equals(currentIdUser)!!) {
             try {
                 return ResponseEntity.status(HttpStatus.CREATED)
-                    .body(cadastroUsuarioService!!.CadastrarUsuario(usuarioDto!!))
+                    .body(cadastroUsuarioService!!.cadastrarUsuario(usuarioDto!!))
             } catch (e: Exception) {
                 ResponseEntity.badRequest().body(e.message)
             }
