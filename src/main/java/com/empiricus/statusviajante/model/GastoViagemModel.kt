@@ -1,5 +1,7 @@
 package com.empiricus.statusviajante.model
 
+import com.empiricus.statusviajante.annotation.Positive
+import com.empiricus.statusviajante.annotation.Validator
 import java.util.*
 import javax.persistence.*
 import javax.validation.constraints.NotNull
@@ -10,10 +12,15 @@ class GastoViagemModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var idGasto: Long? = null
-    var dataGasto: @NotNull Date? = null
-    var valorGasto: @NotNull Double = 0.0
+    @field:NotNull
+    var dataGasto: Date? = null
+    @field:NotNull
+    @field:Positive()
+    var valorGasto: Double = 0.0
     var moeda: String? = null
     var descricaoGasto: String? = null
+
+    
 
     @ManyToOne
     @JoinColumn(name = "idViagem")
