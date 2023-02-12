@@ -15,8 +15,8 @@
     <name>statusviajante</name>
     <description>projeto back-end status viajante</description>
     <properties>
-        <java.version>17</java.version>
-        <kotlin.version>1.8.0</kotlin.version>
+        <java.version>16</java.version>
+        <kotlin.version>1.7.22</kotlin.version>
     </properties>
     <dependencies>
         <dependency>
