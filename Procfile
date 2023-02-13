@@ -1,1 +1,1 @@
-web:java -jar build/libs/kotlin-api.jar --server.port=$PORT
+web: java -cp statusviajante.jar com.empiricus.statusviajante --server.port=$PORT
